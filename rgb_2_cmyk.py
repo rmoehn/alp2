@@ -1,6 +1,8 @@
 #!/usr/bin/env python3.2
 """ Fragt RGB-Wert einer Farbe ab und gibt CMYK-Wert zurück """
 
+import numbers
+
 def rgb_to_cmyk(rgb_list):
     """
     Wandelt RGB- in CMYK-Werte um
@@ -11,9 +13,11 @@ def rgb_to_cmyk(rgb_list):
     """
     # Eingabe auf Korrektheit prüfen
     for ch_val in rgb_list:
-        if ch_val > 255 or ch_val < 0:
+        if not isinstance(ch_val, numbers.Integral) \
+            or ch_val > 255 \
+            or ch_val < 0:
             raise Exception("RGB-Werte müssen im Bereich von 0 bis 255"
-                            + " liegen")
+                            + " liegen und natürliche Zahlen sein")
 
     # ominösen Hilfswert berechnen
     aux = max(rgb_list) / 255
