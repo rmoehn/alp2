@@ -1,0 +1,34 @@
+Tests für die Funktionen aus ``rgb_2_cmyk.test``
+==========================================================
+
+    >>> import rgb_2_cmyk.test
+
+Die Farbe Schwarz...
+
+    >>> rgb_to_cmyk([0,0,0])
+    [0, 0, 0, 1]
+
+Die Farbe Weiß...
+
+    >>> rgb_to_cmyk([255,255,255])
+    [0.0, 0.0, 0.0, 0.0]
+
+Keine ungezogenen Werte für die Kanäle...
+
+    >>> rgb_to_cmyk([34,256,8])
+    Traceback (most recent call last):
+        ...
+    Exception: RGB-Werte müssen im Bereich von 0 bis 255 liegen
+
+    >>> rgb_to_cmyk([227,-13,8])
+    Traceback (most recent call last):
+        ...
+    Exception: RGB-Werte müssen im Bereich von 0 bis 255 liegen
+
+Diverse Farben...
+
+    >>> rgb_to_cmyk([4,45,98])
+    [0.9591836734693877, 0.5408163265306123, 0.0, 0.615686274509804]
+
+    >>> rgb_to_cmyk([254,237,220])
+    [0.0, 0.0669291338582677, 0.1338582677165354, 0.0039215686274509665]
