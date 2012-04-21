@@ -32,14 +32,17 @@ def rgb_to_cmyk(rgb_list):
 
     return cmyk_list
 
-# RGB-Werte abfragen
-print("Eingabe der RGB-Farbe:")
-r = input("R = ")
-g = input("G = ")
-b = input("B = ")
 
-# Umwandeln in int und als Liste speichern
-rgb_val = list( map(int, [r, g, b]) )
+# Bei Aufruf als Skript wird gefragt...
+if __name__ == "__main__":
+    # RGB-Werte abfragen
+    print("Eingabe der RGB-Farbe:")
+    r = input("R = ")
+    g = input("G = ")
+    b = input("B = ")
 
-# CMYK berechnen und ausgeben
-print(rgb_to_cmyk(rgb_val))
+    # Umwandeln in int und als Liste speichern
+    rgb_val = list( map(int, [r, g, b]) )
+
+    # CMYK berechnen und ausgeben
+    print(rgb_to_cmyk(rgb_val))
