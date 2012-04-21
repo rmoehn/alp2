@@ -1,7 +1,7 @@
-Tests für die Funktionen aus ``rgb_2_cmyk.test``
+Tests für die Funktionen aus ``rgb_2_cmyk``
 ==========================================================
 
-    >>> import rgb_2_cmyk.test
+    >>> from rgb_2_cmyk import rgb_to_cmyk
 
 Die Farbe Schwarz...
 
