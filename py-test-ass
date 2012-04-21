@@ -1,0 +1,27 @@
+#!/usr/bin/perl
+
+use 5.012;
+use strict;
+use warnings;
+use autodie;
+use List::MoreUtils;
+use Regexp::DefaultFlags;
+
+my $testfile_name = sprintf 'ueb-%02d-tests.py', shift @ARGV;
+my @pyfiles = @ARGV;
+my @pytestfiles = apply s/\.py/.test/, @pyfiles;
+
+open my $testfile, '>', $testfile_name;
+
+print {$testfile} "#!/usr/bin/env python3.2\n\n",
+                  "import doctest\n\n";
+
+for my $pytestfile (@pytestfiles) {
+    open my $pytestfile_fh, '<', $pytestfile;
+
+    my $testheader = <$pytestfile_fh>;
+
+    print {$testfile} "print($testheader)\n",
+                      '-' x 60, "\n",
+                      "doctest.testfile("$pytestfile", verbose=True)\n\n";
+}
