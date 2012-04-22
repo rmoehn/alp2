@@ -1,0 +1,44 @@
+Tests für die Funktionen aus ``pi``
+==========================================================
+
+>>> from pi import pi_approx_euler
+
+Pi in verschiedenen Näherungen
+
+>>> pi_approx_euler(1)
+2.449489742783178
+>>> pi_approx_euler(3)
+2.8577380332470415
+>>> pi_approx_euler(15)
+3.079389826032086
+>>> pi_approx_euler(1000)
+3.1406380562059946
+>>> pi_approx_euler(10000)
+3.1414971639472142
+>>> pi_approx_euler(90753)
+3.141582131337143
+>>> pi_approx_euler(5000000)
+3.1415924626038683
+
+Diverser Humbug
+
+>>> pi_approx_euler(0)
+Traceback (most recent call last):
+    ...
+Exception: n muss natürliche Zahl >= 1 sein.
+>>> pi_approx_euler(1.54)
+Traceback (most recent call last):
+    ...
+Exception: n muss natürliche Zahl >= 1 sein.
+>>> pi_approx_euler(-24)
+Traceback (most recent call last):
+    ...
+Exception: n muss natürliche Zahl >= 1 sein.
+>>> pi_approx_euler(-3.31j - 5)
+Traceback (most recent call last):
+    ...
+Exception: n muss natürliche Zahl >= 1 sein.
+>>> pi_approx_euler("Boris the Bewildered")
+Traceback (most recent call last):
+    ...
+Exception: n muss natürliche Zahl >= 1 sein.
