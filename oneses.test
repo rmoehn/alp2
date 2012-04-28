@@ -1,0 +1,51 @@
+Tests für die Funktionen aus ``oneses``
+==========================================================
+
+>>> from oneses import longest_oneses_seq_in
+
+Brave Eingabedaten...
+
+>>> longest_oneses_seq_in([0,0,1,1,0,0,1,0,0,1,1,1,1,0,0,1,1,0,0,1,0])
+(9, 4)
+
+>>> longest_oneses_seq_in([1])
+(0, 1)
+>>> longest_oneses_seq_in([0])
+>>> longest_oneses_seq_in([1, 1])
+(0, 2)
+>>> longest_oneses_seq_in([1, 1, 0])
+(0, 2)
+>>> longest_oneses_seq_in([0, 1, 1, 1, 0, 0, 1, 1, 0])
+(1, 3)
+>>> longest_oneses_seq_in([0, 1, 1, 1, 0, 0, 1, 1, 1, 1])
+(6, 4)
+>>> longest_oneses_seq_in([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+>>> longest_oneses_seq_in([0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0])
+(4, 4)
+>>> longest_oneses_seq_in([1,1,0,0,0,1,1,0,1,1,0,0,1,0,0,0,1,1,0,1])
+(0, 2)
+>>> longest_oneses_seq_in([1,0,0,0,1,0,1,1,1,0,0,1,1,0,1,1,1,0,0,0,1,1,0,0])
+(6, 3)
+
+Auch das sollte gehen...
+
+>>> longest_oneses_seq_in([])
+
+Und ein bisschen Müll...
+
+>>> longest_oneses_seq_in()
+Exception:
+    ...
+>>> longest_oneses_seq_in("Flibbertigibbet")
+Exception:
+    ...
+>>> longest_oneses_seq_in([1, 0, 4, 0, 1, 1])
+Exception:
+    ...
+>>> longest_oneses_seq_in([a, b, c, d])
+Exception:
+    ...
+>>> longest_oneses_seq_in([0, 0, 1, 0, 0, "Tom's acold."])
+Exception:
+    ...
+>>> longest_oneses_seq_in(["Polizeiruf", 1, 1, 0])
