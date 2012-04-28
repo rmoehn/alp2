@@ -1,2 +1,7 @@
 __pycache__
 *tests.py
+*.dvi
+*.ps
+listings.tex
+rgb-2-cmyk.py
+*.tar.gz
