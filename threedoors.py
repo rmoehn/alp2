@@ -8,13 +8,17 @@ class MontyHallGame:
     zwei Ziegen, einem Auto, einem Moderator, einem Spieler und sechs
     Scharnieren
 
+    (Die meisten der folgenden Methoden sollten durch vorangehenden
+     Unterstrich als privat markiert werden.)
+
     """
 
+    # Set to true or false on the end of a game
     player_has_won = None
 
     def __init__(self):
         """
-        Return a new object of the MontyHallGame class
+        Initialise object of the MontyHallGame class
 
         The object is initialised with random positions for the car and
         (implicitly) the goats behind the doors.
@@ -34,11 +38,18 @@ class MontyHallGame:
         Ask the player which door to open
 
         """
-
         self.usr_choice = int(input("Ist das Auto hinter Tür 1, 2 oder 3? "))
 
+        return
+
     def rand_door(self):
+        """
+        Automatically choose random door
+
+        """
         self.usr_choice = random.randint(1, 3)
+
+        return
 
     def open_door(self):
         """
@@ -46,7 +57,7 @@ class MontyHallGame:
 
         """
 
-        # Exclude doors the user has chosen and with a car behind
+        # Exclude doors the user has chosen or with the car behind
         possible_doors = [1, 2, 3]
         possible_doors.remove(self.usr_choice)
         try: # Might have been removed already
@@ -64,8 +75,6 @@ class MontyHallGame:
         Ask user whether he wants to change
 
         """
-
-        # Benutzer fragen, ob er sich auch sicher ist
         self.usr_choice = int(input(
             "Hinter Tür {0} ist eine Ziege.".format(self.opened_door)
             + " Wollen Sie bei Tür {0} bleiben".format(self.usr_choice)
@@ -75,19 +84,37 @@ class MontyHallGame:
         return
 
     def rand_change(self):
-        possible_doors = [1,2,3]
+        """
+        Automatically choose one of the two closed doors
+
+        This may be the former choice or the other one.
+
+        """
+
+        # Set doors to choose from
+        possible_doors = [1, 2, 3]
         possible_doors.remove(self.opened_door)
 
+        # Choose one of the closed doors
         self.usr_choice = random.choice(possible_doors)
 
         return
 
     def change_door(self):
+        """
+        Choose the formerly not chosen door for opening
+
+        """
+
+        # Determine door that was neither opened nor chosen before
         possible_doors = [1, 2, 3]
         possible_doors.remove(self.opened_door)
         possible_doors.remove(self.usr_choice)
 
+        # Choose it
         self.usr_choice = possible_doors[0]
+
+        return
 
     def evaluate(self):
         """
@@ -99,7 +126,6 @@ class MontyHallGame:
         if self.usr_choice == self.opened_door:
             raise Exception("Spieler hat die schon geöffnete Tür gewählt."
                             + " Das ist idiotisch.")
-
         if not self.usr_choice in {1, 2, 3}:
             raise Exception("Spieler hat Tür gewählt, die es gar nicht"
                             + " gibt.")
@@ -107,12 +133,16 @@ class MontyHallGame:
         # Hat er nun gewonnen?
         if self.usr_choice == self.car_pos:
             self.player_has_won = True
-            return 1
+            return 1 # Return numbers as counting aid in massive simulation
         else:
             self.player_has_won = False
             return 0
 
     def gratulate(self):
+        """
+        Tell the player her doom
+
+        """
         if self.player_has_won == True:
             print("Gratulation, Sie haben ein Auto gewonnen!")
         else:
@@ -121,9 +151,16 @@ class MontyHallGame:
         return
 
     def play_interactively(self):
+        """
+        Führt ein interaktives Spiel mit hübschen Eingabeaufforderungen durch
+
+        """
+
+        # Avoid the fallacy of playing the same object twice
         if self.player_has_won in {True, False}:
             raise Exception("Dieses Spiel ist schon gespielt worden!")
 
+        # Conduct a game
         self.ask_door()
         self.open_door()
         self.ask_change()
@@ -132,13 +169,33 @@ class MontyHallGame:
 
         return
 
-    def play_automatically(self, change="random"):
+    def play_automatically(self, change="random", verbose=False):
+        """
+        Führt ein Spiel automatisch und zufällig durch
+
+        Parameter ``change`` legt die Strategie des Spielers fest: Bei
+        "always" wird die Tür immer gewechselt, nachdem der Moderator eine
+        geöffnet hat, bei "never" nie und bei "random" wird zufällig
+        entschieden, ob gewechselt wird oder nicht.
+
+        Falls ``verbose`` True ist, werden die erst gewählte Tür, die vom
+        Moderator geöffnete Tür, die dann gewählte Tür und das Ergebnis
+        ausgegeben.
+
+        """
+
+        # Avoid the fallacy of playing the same object twice
         if self.player_has_won in {True, False}:
             raise Exception("Dieses Spiel ist schon gespielt worden!")
 
+        # Conduct an automatic game
         self.rand_door()
+        if verbose:
+            print("gewählte Tür:", self.usr_choice)
+
         self.open_door()
 
+        # Türwechsel auf Basis der angegebenen Strategie
         if change == "random":
             self.rand_change
         elif change == "always":
@@ -149,13 +206,28 @@ class MontyHallGame:
             raise Exception("Third parameter must be one of 'random',"
                             + " 'always' or 'never'")
 
+        if verbose:
+            print("geöffnete Tür:", self.opened_door)
+            print("nun gewählte Tür:", self.usr_choice)
+            print("Autotür:", self.car_pos)
+            print()
+
         return self.evaluate()
 
     def simulate(times, change="random"):
+        """
+        Simulate ``times`` rounds of the game
+
+        ``change`` as above.
+
+        """
+
+        # Initialise Number of won games
         won_cnt = 0
 
+        # Conduct the games
         for cnt in range(times):
             game = MontyHallGame()
-            won_cnt += game.play_automatically(change)
+            won_cnt += game.play_automatically(change, verbose=True)
 
         return won_cnt
