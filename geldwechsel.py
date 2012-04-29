@@ -1,4 +1,4 @@
-COINS = [200, 100, 50, 20, 10, 5, 2, 1]
+COINS = (200, 100, 50, 20, 10, 5, 2, 1)
 
 def change_money_rec(amount, coins=COINS):
     """
@@ -15,7 +15,7 @@ def change_money_rec(amount, coins=COINS):
 
     """
 
-    def cmr_helper(amount, coins=coins):
+    def cmr_helper(amount, coins):
         """ Helper function doing the actual recursion. Same parameters. """
         # If there is no money left to be divided into coins...
         if amount == 0:
@@ -44,7 +44,7 @@ def change_money_rec(amount, coins=COINS):
     amount *= 100
 
     # Call helper function with now appropriate money format
-    return cmr_helper(amount)
+    return cmr_helper(amount, list(coins))
 
 
 def change_money_iter(amount, coins=COINS):
@@ -65,26 +65,29 @@ def change_money_iter(amount, coins=COINS):
     # Convert amount of money into cents
     amount *= 100
 
+    # Make a copy of the input list (tuple) of coins for use here
+    rem_coins = list(coins)
+
     # Initialise list of returned coins
     change = []
 
     # Go on until the whole amount of money has been divided up into coins
     while amount > 0:
         # If remaining amount of money is too small to be expressed in coins
-        if coins == []:
+        if rem_coins == []:
             # ...die (or not).
             raise Exception("Restbetrag kleiner als die kleinste Münze!")
 
         # If currently biggest coin fits into the amount of money...
-        if coins[0] <= amount:
+        if rem_coins[0] <= amount:
             # Put the coin into the list of returned coins and proceed with
             # the remaining money
-            change += [ coins[0] ]
-            amount -= coins[0]
+            change += [ rem_coins[0] ]
+            amount -= rem_coins[0]
 
         # Currently biggest coin does not fit into the amount of money.
         else:
             # Proceed removing it from the list of available coins
-            coins.pop(0)
+            rem_coins.pop(0)
 
     return change
