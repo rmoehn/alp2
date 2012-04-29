@@ -45,3 +45,46 @@ def change_money_rec(amount, coins=COINS):
 
     # Call helper function with now appropriate money format
     return cmr_helper(amount)
+
+
+def change_money_iter(amount, coins=COINS):
+    """
+    Berechnet die günstigste Kombination von Münzen für einen Geldbetrag
+
+    - iterative Variante
+
+    Parameter:
+        - amount ... Geldbetrag in Euros.Cents
+        - coins  ... Liste der möglichen Münzen in Centäquivalent von groß
+                     nach klein
+    Rückgabe:
+        Liste der den Geldbetrag bildenden Münzen in Centäquivalent
+
+    """
+
+    # Convert amount of money into cents
+    amount *= 100
+
+    # Initialise list of returned coins
+    change = []
+
+    # Go on until the whole amount of money has been divided up into coins
+    while amount > 0:
+        # If remaining amount of money is too small to be expressed in coins
+        if coins == []:
+            # ...die (or not).
+            raise Exception("Restbetrag kleiner als die kleinste Münze!")
+
+        # If currently biggest coin fits into the amount of money...
+        if coins[0] <= amount:
+            # Put the coin into the list of returned coins and proceed with
+            # the remaining money
+            change += [ coins[0] ]
+            amount -= coins[0]
+
+        # Currently biggest coin does not fit into the amount of money.
+        else:
+            # Proceed removing it from the list of available coins
+            coins.pop(0)
+
+    return change
