@@ -10,6 +10,8 @@ class MontyHallGame:
 
     """
 
+    player_has_won = None
+
     def __init__(self):
         """
         Return a new object of the MontyHallGame class
@@ -34,6 +36,9 @@ class MontyHallGame:
         """
 
         self.usr_choice = int(input("Ist das Auto hinter Tür 1, 2 oder 3? "))
+
+    def rand_door(self):
+        self.usr_choice = random.randint(1, 3)
 
     def open_door(self):
         """
@@ -69,6 +74,21 @@ class MontyHallGame:
 
         return
 
+    def rand_change(self):
+        possible_doors = [1,2,3]
+        possible_doors.remove(self.opened_door)
+
+        self.usr_choice = random.choice(possible_doors)
+
+        return
+
+    def change_door(self):
+        possible_doors = [1, 2, 3]
+        possible_doors.remove(self.opened_door)
+        possible_doors.remove(self.usr_choice)
+
+        self.usr_choice = possible_doors[0]
+
     def evaluate(self):
         """
         See whether player has won or not
@@ -101,6 +121,9 @@ class MontyHallGame:
         return
 
     def play_interactively(self):
+        if self.player_has_won in {True, False}:
+            raise Exception("Dieses Spiel ist schon gespielt worden!")
+
         self.ask_door()
         self.open_door()
         self.ask_change()
@@ -108,3 +131,31 @@ class MontyHallGame:
         self.gratulate()
 
         return
+
+    def play_automatically(self, change="random"):
+        if self.player_has_won in {True, False}:
+            raise Exception("Dieses Spiel ist schon gespielt worden!")
+
+        self.rand_door()
+        self.open_door()
+
+        if change == "random":
+            self.rand_change
+        elif change == "always":
+            self.change_door
+        elif change == "never":
+            pass
+        else:
+            raise Exception("Third parameter must be one of 'random',"
+                            + " 'always' or 'never'")
+
+        return self.evaluate()
+
+    def simulate(times, change="random"):
+        won_cnt = 0
+
+        for cnt in range(times):
+            game = MontyHallGame()
+            won_cnt += game.play_automatically(change)
+
+        return won_cnt
