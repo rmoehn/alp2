@@ -1,0 +1,82 @@
+Tests für die Funktionen aus ``geldwechsel``
+==========================================================
+
+>>> from geldwechsel import *
+
+Zuerst die rekursive Variante
+----------------------------------------------------------
+
+Ordentliche Eingaben...
+
+>>> change_money_rec(2)
+[200]
+>>> change_money_rec(1.00)
+[100]
+>>> change_money_rec(0.50)
+[50]
+>>> change_money_rec(24.00)
+[200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200]
+>>> change_money_rec(13.87)
+[200, 200, 200, 200, 200, 200, 100, 50, 20, 10, 5, 2]
+>>> change_money_rec(0.13)
+[10, 2, 1]
+>>> change_money_rec(0)
+[]
+
+Auch mit anderen Münzsorten...
+
+>>> change_money_rec(1.76, [7,3,1])
+[7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 1]
+>>> change_money_rec(3.38, [5, 3])
+[5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 3]
+
+Schlechte Eingaben...
+
+>>> change_money_rec(7.414)
+Traceback (most recent call last):
+    ...
+Exception: Gebrochene Cents sind nicht erlaubt.
+>>> change_money_rec(0.43, [50, 20])
+Traceback (most recent call last):
+    ...
+Exception: Restbetrag kleiner als die kleinste Münze!
+
+
+Jetzt die iterative
+----------------------------------------------------------
+
+Ordentliche Eingaben...
+
+>>> change_money_iter(2)
+[200]
+>>> change_money_iter(1.00)
+[100]
+>>> change_money_iter(0.50)
+[50]
+>>> change_money_iter(24.00)
+[200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200]
+>>> change_money_iter(13.87)
+[200, 200, 200, 200, 200, 200, 100, 50, 20, 10, 5, 2]
+>>> change_money_iter(0.13)
+[10, 2, 1]
+>>> change_money_iter(0)
+[]
+
+Auch mit anderen Münzsorten...
+
+>>> change_money_iter(1.76, [7,3,1])
+[7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 1]
+>>> change_money_iter(3.38, [5, 3])
+[5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 3]
+
+Schlechte Eingaben...
+
+>>> change_money_iter(7.414)
+Traceback (most recent call last):
+    ...
+Exception: Gebrochene Cents sind nicht erlaubt.
+>>> change_money_iter(0.43, [50, 20])
+Traceback (most recent call last):
+    ...
+Exception: Restbetrag kleiner als die kleinste Münze!
+
