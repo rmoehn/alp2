@@ -1,0 +1,16 @@
+>>> MontyHallGame.simulate(10000, 'random')
+5098
+>>> MontyHallGame.simulate(10000, 'always')
+6701
+>>> MontyHallGame.simulate(10000, 'never')
+3361
+>>> game = MontyHallGame()
+>>> game.play_interactively()
+Ist das Auto hinter Tür 1, 2 oder 3? 1
+Hinter Tür 3 ist eine Ziege. Wollen Sie bei Tür 1 bleiben oder nicht doch lieber die andere Tür nehmen? 2
+Gratulation, Sie haben ein Auto gewonnen!
+>>> game = MontyHallGame()
+>>> game.play_interactively()
+Ist das Auto hinter Tür 1, 2 oder 3? 1
+Hinter Tür 3 ist eine Ziege. Wollen Sie bei Tür 1 bleiben oder nicht doch lieber die andere Tür nehmen? 1
+Mehehe.

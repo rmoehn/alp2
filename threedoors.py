@@ -4,8 +4,8 @@ class MontyHallGame:
     """
     Klasse zur Simulation des Monty-Hall-Spieles
 
-    -- auch bekannt als Drei-Türen-Spiel, Zonk (?) oder Spiel mit drei Türen,
-    zwei Ziegen, einem Auto, einem Moderator, einem Spieler und sechs
+    -- besser bekannt als Drei-Türen-Spiel, Zonk (?) oder Spiel mit drei
+    Türen, zwei Ziegen, einem Auto, einem Moderator, einem Spieler und sechs
     Scharnieren
 
     (Die meisten der folgenden Methoden sollten durch vorangehenden
@@ -126,9 +126,6 @@ class MontyHallGame:
         if self.usr_choice == self.opened_door:
             raise Exception("Spieler hat die schon geöffnete Tür gewählt."
                             + " Das ist idiotisch.")
-        if not self.usr_choice in {1, 2, 3}:
-            raise Exception("Spieler hat Tür gewählt, die es gar nicht"
-                            + " gibt.")
 
         # Hat er nun gewonnen?
         if self.usr_choice == self.car_pos:
@@ -197,9 +194,9 @@ class MontyHallGame:
 
         # Türwechsel auf Basis der angegebenen Strategie
         if change == "random":
-            self.rand_change
+            self.rand_change()
         elif change == "always":
-            self.change_door
+            self.change_door()
         elif change == "never":
             pass
         else:
@@ -228,6 +225,12 @@ class MontyHallGame:
         # Conduct the games
         for cnt in range(times):
             game = MontyHallGame()
-            won_cnt += game.play_automatically(change, verbose=True)
+            won_cnt += game.play_automatically(change)
 
         return won_cnt
+
+
+# Bei Aufruf als Programm, soll der Benutzer spielen
+if __name__ == "__main__":
+    game = MontyHallGame()
+    game.play_interactively()
