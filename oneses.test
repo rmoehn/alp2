@@ -21,7 +21,7 @@ Brave Eingabedaten...
 (6, 4)
 >>> longest_oneses_seq_in([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 >>> longest_oneses_seq_in([0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0])
-(4, 4)
+(3, 4)
 >>> longest_oneses_seq_in([1,1,0,0,0,1,1,0,1,1,0,0,1,0,0,0,1,1,0,1])
 (0, 2)
 >>> longest_oneses_seq_in([1,0,0,0,1,0,1,1,1,0,0,1,1,0,1,1,1,0,0,0,1,1,0,0])
@@ -33,19 +33,15 @@ Auch das sollte gehen...
 
 Und ein bisschen Müll...
 
->>> longest_oneses_seq_in()
-Exception:
-    ...
->>> longest_oneses_seq_in("Flibbertigibbet")
-Exception:
-    ...
 >>> longest_oneses_seq_in([1, 0, 4, 0, 1, 1])
-Exception:
+Traceback (most recent call last):
     ...
->>> longest_oneses_seq_in([a, b, c, d])
-Exception:
-    ...
+Exception: Invalid input: A bitvector must contain naught but zeroeses and oneses.
 >>> longest_oneses_seq_in([0, 0, 1, 0, 0, "Tom's acold."])
-Exception:
+Traceback (most recent call last):
     ...
+Exception: Invalid input: A bitvector must contain naught but zeroeses and oneses.
 >>> longest_oneses_seq_in(["Polizeiruf", 1, 1, 0])
+Traceback (most recent call last):
+    ...
+Exception: Invalid input: A bitvector must contain naught but zeroeses and oneses.

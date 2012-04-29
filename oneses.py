@@ -22,6 +22,10 @@ def longest_oneses_seq_in(bitvec):
     # Initialise the former bit to 0 (important)
     former_bit = 0
 
+    # Append a 0 to the input vector
+    bitvec.append(0)
+        # Sequences of oneses at its end wouldn't be recognised otherwise
+
     # Bitvektor Bit für Bit durchlaufen
     for bit in bitvec:
 #        print("Bit:", bit)
