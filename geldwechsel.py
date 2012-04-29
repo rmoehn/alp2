@@ -43,6 +43,10 @@ def change_money_rec(amount, coins=COINS):
     # Convert amount of money into cents
     amount *= 100
 
+    # Prohibit non-integer cents
+    if amount != int(amount):
+        raise Exception("Gebrochene Cents sind nicht erlaubt.")
+
     # Call helper function with now appropriate money format
     return cmr_helper(amount, list(coins))
 
@@ -64,6 +68,10 @@ def change_money_iter(amount, coins=COINS):
 
     # Convert amount of money into cents
     amount *= 100
+
+    # Prohibit non-integer cents
+    if amount != int(amount):
+        raise Exception("Gebrochene Cents sind nicht erlaubt.")
 
     # Make a copy of the input list (tuple) of coins for use here
     rem_coins = list(coins)
