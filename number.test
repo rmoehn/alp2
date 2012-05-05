@@ -1,0 +1,28 @@
+Tests für die Funktionen aus ``number``
+==========================================================
+
+>>> from number import is_natural
+>>> is_natural(0)
+True
+>>> is_natural(1)
+True
+>>> is_natural(24)
+True
+>>> is_natural(9987248)
+True
+>>> is_natural(0.001)
+False
+>>> is_natural(4.13)
+False
+>>> is_natural(-12)
+False
+>>> is_natural(-8983.007)
+False
+>>> is_natural("ooze")
+False
+>>> is_natural(34 + 4.55j)
+False
+>>> is_natural(["Tinker", "Tailer", "Soldier", "Sailor"])
+False
+>>> is_natural((1, 2, 3))
+False
