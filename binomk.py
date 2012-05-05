@@ -58,3 +58,30 @@ def binomk_rek(n, k):
 
     # Bühne frei für Rekursion
     return binomk_rek(n-1, k-1) + binomk_rek(n-1, k)
+
+
+def binomk_iter(n, k):
+    """
+    Berechnet den Binomialkoeffizienten n über k iterativ
+
+    Die Berechnung ist an die explizite Formel angelehnt. -- Sie zieht die
+    Faktoren aus den Fakultäten auseinander, dividiert also erst und
+    multipliziert dann.
+
+    """
+
+    # Dumme Eingaben abfangen
+    if not is_natural(n) or not is_natural(k):
+        raise Exception("n und k müssen natürliche Zahlen sein")
+
+    # Nach Definition:
+    if k > n:
+        return 0
+
+    # Binomialkoeffizienten berechnen
+    res = 1
+    for i in range(1, k+1):
+        res *= n / i
+        n -= 1  # Einfaches Dekrement ist schneller als explizite Subtraktion
+
+    return int(res)
