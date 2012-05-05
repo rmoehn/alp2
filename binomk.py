@@ -1,4 +1,4 @@
-import number
+from number import is_natural
 
 def fac_iter(n):
     """
@@ -7,7 +7,7 @@ def fac_iter(n):
     """
 
     # Dumme Eingaben abfangen
-    if not number.is_natural(n):
+    if not is_natural(n):
         raise Exception("Wir berechnen nur Fakultäten von natürlichen"
                         + " Zahlen. Für andere Zahlenbereiche ist die"
                         + " Gammafunktion zu verwenden.")
@@ -37,3 +37,24 @@ def binomk_naiv(n, k):
 
 
 def binomk_rek(n, k):
+    """
+    Berechnet den Binomialkoeffizienten n über k über die rekursive Formel
+
+    """
+
+    # Dumme Eingaben abfangen
+    if not is_natural(n) or not is_natural(k):
+        raise Exception("n und k müssen natürliche Zahlen sein")
+
+    # Nach Definition:
+    if k > n:
+        return 0
+
+    # Rekursionsanker setzen
+    if k == 0:
+        return 1
+    if k == 1:
+        return n
+
+    # Bühne frei für Rekursion
+    return binomk_rek(n-1, k-1) + binomk_rek(n-1, k)

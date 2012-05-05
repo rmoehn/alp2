@@ -1,7 +1,7 @@
-Tests für die Funktionen aus ``binom``
+Tests für die Funktionen aus ``binomk``
 ==========================================================
 
->>> from binom import *
+>>> from binomk import *
 
 Fakultätsfunktion testen
 
@@ -25,22 +25,9 @@ Fakultätsfunktion testen
 Traceback (most recent call last):
     ...
 Exception: Wir berechnen nur Fakultäten von natürlichen Zahlen. Für andere Zahlenbereiche ist die Gammafunktion zu verwenden.
->>> fac_iter(-3)
-Traceback (most recent call last):
-    ...
-Exception: Wir berechnen nur Fakultäten von natürlichen Zahlen. Für andere Zahlenbereiche ist die Gammafunktion zu verwenden.
->>> fac_iter(5 + 0J)
-Traceback (most recent call last):
-    ...
-Exception: Wir berechnen nur Fakultäten von natürlichen Zahlen. Für andere Zahlenbereiche ist die Gammafunktion zu verwenden.
->>> fac_iter(5 + 0j)
-Traceback (most recent call last):
-    ...
-Exception: Wir berechnen nur Fakultäten von natürlichen Zahlen. Für andere Zahlenbereiche ist die Gammafunktion zu verwenden.
->>> fac_iter("Wither art thou wandering?")
-Traceback (most recent call last):
-    ...
-Exception: Wir berechnen nur Fakultäten von natürlichen Zahlen. Für andere Zahlenbereiche ist die Gammafunktion zu verwenden.
+
+Damit wissen wir, dass Fehleingaben überhaupt getestet werden und nehmen an,
+dass die externe Testfunktion ordentlich arbeitet.
 
 Naive Binomialkoeffizientenfunktion testen
 
@@ -59,5 +46,24 @@ Naive Binomialkoeffizientenfunktion testen
 >>> binomk_naiv(34, 5)
 278256
 >>> binomk_naiv(34, 29)
+278256
+
+Rekursive Binomialkoeffizientenfunktion testen
+
+>>> binomk_rek(0,0)
+1
+>>> binomk_rek(13,0)
+1
+>>> binomk_rek(3,20)
+0
+>>> binomk_rek(13, 13)
+1
+>>> binomk_rek(24, 24)
+1
+>>> binomk_rek(7, 1)
+7
+>>> binomk_rek(34, 5)
+278256
+>>> binomk_rek(34, 29)  # dauert recht lange
 278256
 
