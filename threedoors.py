@@ -8,9 +8,6 @@ class MontyHallGame:
     Türen, zwei Ziegen, einem Auto, einem Moderator, einem Spieler und sechs
     Scharnieren
 
-    (Die meisten der folgenden Methoden sollten durch vorangehenden
-     Unterstrich als privat markiert werden.)
-
     """
 
     # Set to true or false on the end of a game
