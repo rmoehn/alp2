@@ -67,3 +67,21 @@ Rekursive Binomialkoeffizientenfunktion testen
 >>> binomk_rek(34, 29)  # dauert recht lange
 278256
 
+Iterative Binomialkoeffizientenfunktion testen
+
+>>> binomk_iter(0,0)
+1
+>>> binomk_iter(13,0)
+1
+>>> binomk_iter(3,20)
+0
+>>> binomk_iter(13, 13)
+1
+>>> binomk_iter(24, 24)
+1
+>>> binomk_iter(7, 1)
+7
+>>> binomk_iter(34, 5)
+278256
+>>> binomk_iter(34, 29)
+278256
