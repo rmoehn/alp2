@@ -48,6 +48,20 @@ Naive Binomialkoeffizientenfunktion testen
 >>> binomk_naiv(34, 29)
 278256
 
+>>> binomk_naiv(-3, 2)
+Traceback (most recent call last):
+    ...
+Exception: n und k müssen natürliche Zahlen sein
+>>> binomk_naiv(9, 3.331)
+Traceback (most recent call last):
+    ...
+Exception: n und k müssen natürliche Zahlen sein
+>>> binomk_naiv(-4, -7)
+Traceback (most recent call last):
+    ...
+Exception: n und k müssen natürliche Zahlen sein
+
+
 Rekursive Binomialkoeffizientenfunktion testen
 
 >>> binomk_rek(0,0)
@@ -67,6 +81,19 @@ Rekursive Binomialkoeffizientenfunktion testen
 >>> binomk_rek(34, 29)  # dauert recht lange
 278256
 
+>>> binomk_rek(-3, 2)
+Traceback (most recent call last):
+    ...
+Exception: n und k müssen natürliche Zahlen sein
+>>> binomk_rek(9, 3.331)
+Traceback (most recent call last):
+    ...
+Exception: n und k müssen natürliche Zahlen sein
+>>> binomk_rek(-4, -7)
+Traceback (most recent call last):
+    ...
+Exception: n und k müssen natürliche Zahlen sein
+
 Iterative Binomialkoeffizientenfunktion testen
 
 >>> binomk_iter(0,0)
@@ -85,3 +112,17 @@ Iterative Binomialkoeffizientenfunktion testen
 278256
 >>> binomk_iter(34, 29)
 278256
+
+>>> binomk_iter(-3, 2)
+Traceback (most recent call last):
+    ...
+Exception: n und k müssen natürliche Zahlen sein
+>>> binomk_iter(9, 3.331)
+Traceback (most recent call last):
+    ...
+Exception: n und k müssen natürliche Zahlen sein
+>>> binomk_iter(-4, -7)
+Traceback (most recent call last):
+    ...
+Exception: n und k müssen natürliche Zahlen sein
+

@@ -28,10 +28,13 @@ def binomk_naiv(n, k):
 
     """
 
+    # Dumme Eingaben abfangen
+    if not is_natural(n) or not is_natural(k):
+        raise Exception("n und k müssen natürliche Zahlen sein")
+
     # Nach Definition:
     if k > n:
         return 0
-    # Übrige problematische Eingaben werden von fac_iter abgefangen
     else:
         return fac_iter(n) // (fac_iter(n - k) * fac_iter(k))
 
