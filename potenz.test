@@ -1,0 +1,67 @@
+Tests für die Funktionen aus ``potenz``
+==========================================================
+
+>>> from potenz import *
+
+Rekursive Variante testen
+
+>>> pow_rek(2, 3)
+8
+>>> pow_rek(2, 0)
+1
+>>> pow_rek(0, 0)
+1
+>>> pow_rek(0, 4)
+0
+>>> pow_rek(12, 1)
+12
+>>> pow_rek(3, 10)
+59049
+>>> pow_rek(34, 5)
+45435424
+>>> pow_rek(6, 21)
+21936950640377856
+>>> pow_rek(-3, 4)
+Traceback (most recent call last):
+    ...
+Exception: Basis und Exponent müssen natürliche Zahlen sein
+>>> pow_rek(-1, 0)
+Traceback (most recent call last):
+    ...
+Exception: Basis und Exponent müssen natürliche Zahlen sein
+>>> pow_rek(-1, 'The foul fiend bites in the back.')
+Traceback (most recent call last):
+    ...
+Exception: Basis und Exponent müssen natürliche Zahlen sein
+
+
+Iterative Variante testen
+
+>>> pow_iter(2, 3)
+8
+>>> pow_iter(2, 0)
+1
+>>> pow_iter(0, 0)
+1
+>>> pow_iter(0, 4)
+0
+>>> pow_iter(12, 1)
+12
+>>> pow_iter(3, 10)
+59049
+>>> pow_iter(34, 5)
+45435424
+>>> pow_iter(6, 21)
+21936950640377856
+>>> pow_iter(-3, 4)
+Traceback (most recent call last):
+    ...
+Exception: Basis und Exponent müssen natürliche Zahlen sein
+>>> pow_iter(-1, 0)
+Traceback (most recent call last):
+    ...
+Exception: Basis und Exponent müssen natürliche Zahlen sein
+>>> pow_iter(-1, 'The foul fiend bites in the back.')
+Traceback (most recent call last):
+    ...
+Exception: Basis und Exponent müssen natürliche Zahlen sein
