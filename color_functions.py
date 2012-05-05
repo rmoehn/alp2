@@ -1,20 +1,7 @@
 # Version 1.2 (ALP II Team)
 
 """
-        You only have to write some code inside the 'decide_color' functions.
-        Your decide_color functions calculate a color for each (x,y) position
-        and give it back with a return statement.
-        The 'six 'decide_color' functions are called in the 'Mosaic_GUI.py'
-        script to paint the six mosaics in a window.
-        For an easy start we wrote some simple examples.
-        Please overwrite them with your own solutions.
-
-        Both files have to be in the same directory and you must run the
-        'Mosaic_GUI.py' script to show your mosaics.
-
-        In the following page you can find a table of colors to be used
-        in your functions
-               'http://tmml.sourceforge.net/doc/tk/colors.html'
+    blabla
 """
 from math import sqrt
 import random
@@ -38,12 +25,54 @@ def decide_color_rects(x, y, size):
     return "black"
 
 def decide_color_circle(x, y, size):
-        # write your code here
-        return "red"
+        """
+        Erzeugt einen senkrecht in einen roten und schwarzen Halbkreis
+        aufgeteilten Kreis vor einem waagerecht geteilten Hintergrund, welcher
+        oben Weiß und unten Grau gefärbt ist.
+        """
+        # Quadrant links oben
+        if y<=(size/2) and x<=(size/2):
+            if (size/3)**2>=((x-size/2)**2+(y-size/2)**2):
+                return "red"
+            else:
+                return "white"
+        # Quadrant links unten
+        if y>(size/2) and x<=(size/2):
+            if (size/3)**2>=((x-size/2)**2+(y-size/2)**2):
+                return "red"
+            else:
+                return "gray"
+        # Quadrant rechts unten
+        if y>(size/2) and x>(size/2):
+            if (size/3)**2>=((x-size/2)**2+(y-size/2)**2):
+                return "black"
+            else:
+                return "gray"
+        # Quadrant rechts oben
+        if y<=(size/2) and x>(size/2):
+            if (size/3)**2>=((x-size/2)**2+(y-size/2)**2):
+                return "black"
+            else:
+                return "white"
 
 def decide_color_squares(x, y, size):
-        # write your code here
-        return "blue"
+        """
+        Erzeugt weiße Quadrate mit Mittelpunkt (size/2 / size/2) mit Strich-
+        stärke 2 im Abstand von 2 auf blauem Hintergrund
+        """
+        # Dreieck unten und oben mit waagerechten Linien
+        if y>x and y>-x+size or y<x and y<-x+size:
+            # weiß, wenn y oder y+1 durch teilbar
+            if y%4==0 or y%4==1:
+                return "white"
+            else:
+                return "blue"
+        # Dreieck links und rechts mit senkrechten Linien
+        else:
+            if x%4==0 or x%4==1:
+                return "white"
+            else:
+                return "blue"
 
 def decide_color_illusion(x, y, size):
     sq_size = size // 8    # Kantenlänge der kleinen Quadrate
