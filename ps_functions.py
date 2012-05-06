@@ -6,10 +6,10 @@
     Author: M. Esponda
 """
 """
-   The variable psFile is a File-Object to store the PostScript-Programm. 
-   This is not a really good programming style, but we put this variable hier 
+   The variable psFile is a File-Object to store the PostScript-Programm.
+   This is not a really good programming style, but we put this variable hier
    to minimize the number of arguments to be pass between functions.
-   You need to be carefull because only one File can be use at the same time, 
+   You need to be carefull because only one File can be use at the same time,
    when you are working with this functions
 """
 psFile = None
@@ -22,7 +22,7 @@ def begin( filename, width, height ):
         psFile.write("%%!PS-Adobe-3.0 EPSF-3.0\n")
         psFile.write("%%%%BoundingBox: 0 0 %d %d \n" % (width, height))
     else:
-        psFile.write("The function begin can't open the file %s\n"% filename )       
+        psFile.write("The function begin can't open the file %s\n"% filename )
 
 def end():
     """ Finish a PostScript file """
@@ -34,7 +34,7 @@ def drawLine( x1, y1, x2, y2 ):
     psFile.write("newpath\n")
     psFile.write("%f %f moveto\n"% (x1, y1))
     psFile.write("%f %f lineto\n"% (x2, y2))
-    psFile.write("stroke\n") 
+    psFile.write("stroke\n")
 
 def drawSquare( x, y, size ):
     """ Draw a square with a left upper corner in (x,y) and the input size """
@@ -42,7 +42,7 @@ def drawSquare( x, y, size ):
     psFile.write("%f %f moveto\n"% (x, y))
     psFile.write("%f %f lineto\n"% (x, y+size))
     psFile.write("%f %f lineto\n"% (x+size, y+size))
-    psFile.write("%f %f lineto\n"% (x+size, y)) 
+    psFile.write("%f %f lineto\n"% (x+size, y))
     psFile.write("%f %f lineto\n"% (x, y))
     psFile.write("closepath\n")
     psFile.write("stroke\n")
@@ -53,11 +53,11 @@ def fillSquare( x, y, size ):
     psFile.write("%f %f moveto\n"% (x, y))
     psFile.write("%f %f lineto\n"% (x, y+size))
     psFile.write("%f %f lineto\n"% (x+size, y+size))
-    psFile.write("%f %f lineto\n"% (x+size, y)) 
+    psFile.write("%f %f lineto\n"% (x+size, y))
     psFile.write("%f %f lineto\n"% (x, y))
     psFile.write("closepath\n")
     psFile.write("fill\n")
-    psFile.write( "stroke\n")     
+    psFile.write( "stroke\n")
 
 def drawRect( x, y, width, height ):
     """ Draw a rectangle """
@@ -65,7 +65,7 @@ def drawRect( x, y, width, height ):
     psFile.write("%f %f moveto\n"% (x, y))
     psFile.write("%f %f lineto\n"% (x, y+height))
     psFile.write("%f %f lineto\n"% (x+width, y+height))
-    psFile.write("%f %f lineto\n"% (x+widht, y)) 
+    psFile.write("%f %f lineto\n"% (x+widht, y))
     psFile.write("%f %f lineto\n"% (x, y))
     psFile.write("closepath\n")
     psFile.write("stroke\n")
@@ -76,15 +76,15 @@ def fillRect( x, y, width, height ):
     psFile.write("%f %f moveto\n"% (x, y))
     psFile.write("%f %f lineto\n"% (x, y+height))
     psFile.write("%f %f lineto\n"% (x+width, y+height))
-    psFile.write("%f %f lineto\n"% (x+widht, y)) 
+    psFile.write("%f %f lineto\n"% (x+widht, y))
     psFile.write("%f %f lineto\n"% (x, y))
     psFile.write("closepath\n")
     psFile.write("fill\n")
-    psFile.write("stroke\n") 
+    psFile.write("stroke\n")
 
 def drawPolygon( x, y, size ):
     """ Draw a polygon. The arguments x and y are two lists with size elements"""
-    
+
     psFile.write("newpath\n")
     psFile.write("%f %f moveto\n"% (x[0], y[0]))
 
@@ -96,7 +96,7 @@ def drawPolygon( x, y, size ):
 
 def fillPolygon( x, y, size ):
     """ Paint a polygon. The arguments x and y are two lists with size elements"""
-  
+
     psFile.write("newpath\n")
     psFile.write("%f %f moveto\n"% (x[0], y[0]))
 
@@ -116,14 +116,14 @@ def arc( x, y, r, agrad, fgrad ):
     psFile.write("%f %f %f %f %f arc\n" % (x, y, r, agrad, fgrad))
     psFile.write("stroke\n")
 
-def drawCircle( x, y, radius ):
+def drawCircle( x, y, diam ):
     """ Drau a circle with center (x,y) """
-    arc( x, y, radius, 0, 360 )
+    arc( x, y, diam // 2, 0, 360 )
 
-def fillCircle( x, y, radius ):
+def fillCircle( x, y, diam ):
     """ Paint a circle with center (x,y) and fill it with the current pen color """
     psFile.write("newpath\n")
-    psFile.write("%f %f %f 0 360 arc\n" % (x, y, radius ))
+    psFile.write("%f %f %f 0 360 arc\n" % (x, y, diam // 2))
     psFile.write("fill\n")
     psFile.write("stroke\n")
 
@@ -142,17 +142,17 @@ def setLineJoin( n ):
 
 """ Functions for simple transformations """
 
-def scale( sx, sy ):    
+def scale( sx, sy ):
      psFile.write("%f %f scale\n"% (sx, sy))
 
 def translate ( tx, ty ):
-     psFile.write("%f %f translate\n"% (tx, ty)) 
-    
+     psFile.write("%f %f translate\n"% (tx, ty))
+
 
 """ This is a set of very primitive PostScript functions """
 
 def newpath():
-    psFile.write("newpath\n") 
+    psFile.write("newpath\n")
 
 def closepath():
     """ close a path drawing a line from the last to the first position """
