@@ -45,7 +45,7 @@ Multiplikation testen:
 1485
 >>> umnozhaj(33, 45)
 1485
-umnozhaj(12939, 403949)
+>>> umnozhaj(12939, 403949)
 5226696111
 >>> umnozhaj(-4, 3)
 Traceback (most recent call last):
