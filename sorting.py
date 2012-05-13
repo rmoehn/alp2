@@ -49,6 +49,7 @@ def random_list(my_seed=None):
     return randlist
 
 
+# Quicksort
 def qsort(array, lower_ind=None, upper_ind=None):
     """
     Sortiert eine (Teil-)Liste in-place mit dem Quicksort-Algorithmus
@@ -66,7 +67,7 @@ def qsort(array, lower_ind=None, upper_ind=None):
     # On first call set proper parameters
     if upper_ind == lower_ind == None:
         qsort(array, 0, len(array) - 1)
-        return
+        return array
 
     # As long as partial list length is not 1
     if lower_ind < upper_ind:
@@ -141,7 +142,79 @@ def bsort(array, lower_ind=None, upper_ind=None):
         # This time's last element needs not be sorted any more
         upper_ind -= 1
 
-    return
+    return array
+
+
+def fancy_mergesort(array, lower_ind=None, upper_ind=None, buffer_ary=[]):
+    """
+    Sortiert eine Liste mit dem Mergesort-Algorithmus
+
+    Dabei wird nur eine Hilfliste benutzt, die genau so groß wie die
+    Eingabeliste ist. Außerdem werden Teillisten mit weniger als acht Element
+    nicht gemergt, sondern mit Bubblesort sortiert.
+
+    Parameter:
+    Rückgabe:
+
+    """
+
+    if lower_ind == upper_ind == None:
+        buffer_ary = array[:]
+        fancy_mergesort(array, 0, len(array) - 1, buffer_ary)
+        return
+
+    if upper_ind - lower_ind < 8:
+        print(array)
+        bsort(array, lower_ind, upper_ind)
+        print(array)
+
+        return
+
+    middle_ind = lower_ind + (upper_ind - lower_ind) // 2
+
+    fancy_mergesort(array, lower_ind, middle_ind, buffer_ary)
+    fancy_mergesort(array, middle_ind + 1, upper_ind, buffer_ary)
+
+    print(lower_ind, middle_ind, upper_ind)
+
+    array = merge(array, lower_ind, middle_ind + 1, upper_ind, buffer_ary)
+
+    return array
+
+
+def merge(array, lower_ind, middle_ind, upper_ind, buffer_ary):
+    buffer_ind = lower_ind
+    old_middle_ind = middle_ind
+
+    while lower_ind < old_middle_ind and middle_ind <= upper_ind:
+        print(array[lower_ind:old_middle_ind])
+        print(array[middle_ind:upper_ind+1])
+        if array[lower_ind] <= array[middle_ind]:
+            buffer_ary[buffer_ind] = array[lower_ind]
+            lower_ind += 1
+            print(buffer_ary)
+        else:
+            buffer_ary[buffer_ind] = array[middle_ind]
+            middle_ind += 1
+            print(buffer_ary)
+
+        print()
+
+        buffer_ind += 1
+
+    buffer_ary[buffer_ind:buffer_ind + (upper_ind - lower_ind -1)+1] \
+        = array[lower_ind:old_middle_ind+1]
+
+    buffer_ary[buffer_ind:buffer_ind + (upper_ind - middle_ind)+1] \
+        = array[middle_ind:upper_ind+1]
+
+    print(buffer_ary)
+
+    array = buffer_ary[:]
+    print(array)
+
+    return array
+
 
 
 testlist = [14, 33, 89, 87, 68, 56, 40, 26, 96, 73]
