@@ -112,14 +112,16 @@ def partition_m(array, lower_ind, upper_ind):
     return exch_ind
 
 
-def bsort(array):
+def bsort(array, lower_ind=None, upper_ind=None):
     """
-    Sortiert eine Liste in-place mit dem Bubblesort-Algorithmus
+    Sortiert eine (Teil-)Liste in-place mit dem Bubblesort-Algorithmus
 
     """
 
-    # Nothing is in the right place yet
-    unsorted_end = len(array) - 1
+    # If no bounds are given, sort the whole array
+    if lower_ind == upper_ind == None:
+        bsort(array, 0, len(array) - 1)
+        return
 
     # Loop as long as elements have been changed
     order_changed = True
@@ -128,7 +130,7 @@ def bsort(array):
             # Perhaps no change this time...
 
         # Walk through unsorted part of the list
-        for i in range(unsorted_end):
+        for i in range(lower_ind, upper_ind):
             # Exchange elements that are not in order
             if array[i] > array[i+1]:
                 array[i], array[i+1] = array[i+1], array[i]
@@ -137,8 +139,9 @@ def bsort(array):
                 order_changed = True
 
         # This time's last element needs not be sorted any more
-        unsorted_end -= 1
+        upper_ind -= 1
 
     return
+
 
 testlist = [14, 33, 89, 87, 68, 56, 40, 26, 96, 73]
