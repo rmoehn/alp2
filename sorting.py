@@ -51,7 +51,7 @@ def random_list(my_seed=None):
 
 def qsort(array, lower_ind=None, upper_ind=None):
     """
-    Sortiert eine (Teil-)Liste mit dem Quicksort-Algorithmus
+    Sortiert eine (Teil-)Liste in-place mit dem Quicksort-Algorithmus
 
     Als Pivot-Element wird hier nicht jeweils das erste, sondern das mittlere
     Element einer Teilliste verwendet.
@@ -111,5 +111,34 @@ def partition_m(array, lower_ind, upper_ind):
     # Return boundary for subsequent calls
     return exch_ind
 
+
+def bsort(array):
+    """
+    Sortiert eine Liste in-place mit dem Bubblesort-Algorithmus
+
+    """
+
+    # Nothing is in the right place yet
+    unsorted_end = len(array) - 1
+
+    # Loop as long as elements have been changed
+    order_changed = True
+    while order_changed:
+        order_changed = False
+            # Perhaps no change this time...
+
+        # Walk through unsorted part of the list
+        for i in range(unsorted_end):
+            # Exchange elements that are not in order
+            if array[i] > array[i+1]:
+                array[i], array[i+1] = array[i+1], array[i]
+
+                # Something has changed...
+                order_changed = True
+
+        # This time's last element needs not be sorted any more
+        unsorted_end -= 1
+
+    return
 
 testlist = [14, 33, 89, 87, 68, 56, 40, 26, 96, 73]
