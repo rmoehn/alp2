@@ -161,23 +161,23 @@ def fancy_mergesort(array, lower_ind=None, upper_ind=None, buffer_ary=[]):
     if lower_ind == upper_ind == None:
         buffer_ary = array[:]
         fancy_mergesort(array, 0, len(array) - 1, buffer_ary)
-        return
+        return array
 
     if upper_ind - lower_ind < 8:
-        print(array)
-        bsort(array, lower_ind, upper_ind)
+        array = bsort(array, lower_ind, upper_ind)
         print(array)
 
-        return
+        return array
 
     middle_ind = lower_ind + (upper_ind - lower_ind) // 2
 
-    fancy_mergesort(array, lower_ind, middle_ind, buffer_ary)
-    fancy_mergesort(array, middle_ind + 1, upper_ind, buffer_ary)
+    array = fancy_mergesort(array, lower_ind, middle_ind, buffer_ary)
+    array = fancy_mergesort(array, middle_ind + 1, upper_ind, buffer_ary)
 
     print(lower_ind, middle_ind, upper_ind)
 
     array = merge(array, lower_ind, middle_ind + 1, upper_ind, buffer_ary)
+    print("hier", array)
 
     return array
 
@@ -202,11 +202,16 @@ def merge(array, lower_ind, middle_ind, upper_ind, buffer_ary):
 
         buffer_ind += 1
 
-    buffer_ary[buffer_ind:buffer_ind + (upper_ind - lower_ind -1)+1] \
-        = array[lower_ind:old_middle_ind+1]
+    if middle_ind > upper_ind:
+        print(buffer_ary[buffer_ind:buffer_ind + (upper_ind - lower_ind)+1])
+        print(array[lower_ind:old_middle_ind])
+        print()
+        buffer_ary[buffer_ind:buffer_ind + (upper_ind - lower_ind)+1] \
+            = array[lower_ind:old_middle_ind]
 
-    buffer_ary[buffer_ind:buffer_ind + (upper_ind - middle_ind)+1] \
-        = array[middle_ind:upper_ind+1]
+    if lower_ind == old_middle_ind:
+        buffer_ary[buffer_ind:buffer_ind + (upper_ind - middle_ind)+1] \
+            = array[middle_ind:upper_ind+1]
 
     print(buffer_ary)
 
@@ -218,3 +223,7 @@ def merge(array, lower_ind, middle_ind, upper_ind, buffer_ary):
 
 
 testlist = [14, 33, 89, 87, 68, 56, 40, 26, 96, 73]
+
+if __name__ == '__main__':
+    bla = [-413, -61, 82, 170, 372, -225, 110, 253, 408, 455, 118, 569, 127, -213, 31, 159, 75, -34, 1]
+    print(fancy_mergesort(bla))
