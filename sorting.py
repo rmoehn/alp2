@@ -154,72 +154,93 @@ def fancy_mergesort(array, lower_ind=None, upper_ind=None, buffer_ary=[]):
     nicht gemergt, sondern mit Bubblesort sortiert.
 
     Parameter:
-    Rückgabe:
+        array ... zu sortierende Liste
+        lower_ind ... linker Index des zu sortierenden Bereichs
+        upper_ind ... rechter Index des zu sortierenden Bereichs
+        buffer_ary ... Array, das beim mergen als Puffer dient
+    Rückgabe: (teilweise) sortierte Liste
 
     """
 
+    # Work on the whole array if no arguments given
     if lower_ind == upper_ind == None:
+        # Initialise buffer for merging
         buffer_ary = array[:]
-        fancy_mergesort(array, 0, len(array) - 1, buffer_ary)
-        return array
 
+        return fancy_mergesort(array, 0, len(array) - 1, buffer_ary)
+
+    # Sort smallish chunks with bubblesort
     if upper_ind - lower_ind < 8:
-        array = bsort(array, lower_ind, upper_ind)
-        print(array)
+        return bsort(array, lower_ind, upper_ind)
 
-        return array
-
+    # Sort halves of the current part separately/recursively
     middle_ind = lower_ind + (upper_ind - lower_ind) // 2
+    array = fancy_mergesort(array, lower_ind,      middle_ind, buffer_ary)
+    array = fancy_mergesort(array, middle_ind + 1, upper_ind,  buffer_ary)
 
-    array = fancy_mergesort(array, lower_ind, middle_ind, buffer_ary)
-    array = fancy_mergesort(array, middle_ind + 1, upper_ind, buffer_ary)
-
-    print(lower_ind, middle_ind, upper_ind)
-
+    # Merge the sorted halves
     array = merge(array, lower_ind, middle_ind + 1, upper_ind, buffer_ary)
-    print("hier", array)
 
     return array
 
 
 def merge(array, lower_ind, middle_ind, upper_ind, buffer_ary):
+    """
+    Verschmilzt zwei sortierte Bereiche in einem Array
+
+    Es entsteht ein großer sortierter Bereich.
+
+    Dabei wird eine Hilfsliste verwendet, die zunächst eine Kopie der zu
+    sortierendenen Liste ist. Auf diese Weise bleibt der Speicherverbrauch
+    konstant.
+
+    Parameter:
+        array      ... Liste, in der Bereiche verschmolzen werden sollen
+        lower_ind  ... Anfang des linken Bereichs
+        middle_ind ... Anfang des rechten Bereichs/Ende des linken
+        upper_ind  ... Ende des rechten Bereichs
+        buffer_ary ... Array, in das gemergt wird und das dann wieder
+                       zurückkopiert wird
+
+    """
+
+    # The smaller of the two first elements of the parts is written here
     buffer_ind = lower_ind
+
+    # Boundary for processing of the lower part
     old_middle_ind = middle_ind
 
+    # While there are elements in both parts
     while lower_ind < old_middle_ind and middle_ind <= upper_ind:
-        print(array[lower_ind:old_middle_ind])
-        print(array[middle_ind:upper_ind+1])
+        # Place the smaller one of the first elements in the buffer
         if array[lower_ind] <= array[middle_ind]:
             buffer_ary[buffer_ind] = array[lower_ind]
+            # Next element has to become first
             lower_ind += 1
-            print(buffer_ary)
         else:
             buffer_ary[buffer_ind] = array[middle_ind]
             middle_ind += 1
-            print(buffer_ary)
 
-        print()
-
+        # Next element has to be written at the index to the right
         buffer_ind += 1
 
+    # If all elements of the upper part of the list are used up...
     if middle_ind > upper_ind:
-        print(buffer_ary[buffer_ind:buffer_ind + (upper_ind - lower_ind)+1])
-        print(array[lower_ind:old_middle_ind])
-        print()
-        buffer_ary[buffer_ind:buffer_ind + (upper_ind - lower_ind)+1] \
-            = array[lower_ind:old_middle_ind]
+        # ...put the remaining elements of the lower part in the buffer.
+        buffer_ary[buffer_ind : buffer_ind + (upper_ind - lower_ind) + 1] \
+            = array[lower_ind : old_middle_ind]
 
-    if lower_ind == old_middle_ind:
-        buffer_ary[buffer_ind:buffer_ind + (upper_ind - middle_ind)+1] \
-            = array[middle_ind:upper_ind+1]
+    # If all elements of the lower part of the list are used up...
+    elif lower_ind == old_middle_ind:
+        # ...put the remaining elements of the upper part in the buffer.
+        buffer_ary[buffer_ind : buffer_ind + (upper_ind - middle_ind) + 1] \
+            = array[middle_ind : upper_ind + 1]
 
-    print(buffer_ary)
+    else:
+        raise Exception("Some mistake... (Very revealing, eh?)")
 
-    array = buffer_ary[:]
-    print(array)
-
-    return array
-
+    # Return _copy_ of buffer elements. -- Reference would cause trouble.
+    return buffer_ary[:]
 
 
 testlist = [14, 33, 89, 87, 68, 56, 40, 26, 96, 73]
