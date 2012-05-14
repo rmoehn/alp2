@@ -1,0 +1,19 @@
+Tests für die Funktionen aus ``majority``
+==========================================================
+
+>>> from majority import *
+
+>>> find_abs_majority_elem_in([1,3,3,4,6,2])
+>>> find_abs_majority_elem_in([1,3,3,4,6,2,3])
+>>> find_abs_majority_elem_in([3,1,3,3,4,6,2,3])
+>>> find_abs_majority_elem_in([3,1,3,3,4,6,2,3,3])
+3
+
+>>> find_abs_majority_elem_in(['wir', 'haben', 'hunger'])
+>>> find_abs_majority_elem_in(['haben', 'hunger', 'hunger', 'hunger'])
+'hunger'
+
+>>> find_abs_majority_elem_in([(1,2), (2,1), (1,2), (1,2), (2,1), (2,1), (2,1)])
+(2, 1)
+>>> find_abs_majority_elem_in([])
+>>> find_abs_majority_elem_in(['Griechisches Parlament'])
