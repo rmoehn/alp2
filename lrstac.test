@@ -1,0 +1,11 @@
+Tests für die Funktionen aus ``lrstac``
+==========================================================
+
+>>> from lrstac import *
+
+>>> reverse_string('Pflaumenbaum')
+'muabnemualfP'
+>>> reverse_string('RELIEFPFEILER')
+'RELIEFPFEILER'
+>>> LRS_Algorithmus(testsequence)
+'CTAC'
