@@ -242,8 +242,11 @@ def merge(array, lower_ind, middle_ind, upper_ind, buffer_ary):
     return buffer_ary[:]
 
 
+# Des is mane Destfunktion:
 if __name__ == '__main__':
+    # Olle implemendierten Soatiera duachgehn
     for sorter in [qsort, bsort, fancy_mergesort]:
+        # Und mit zehn vaschiednen zufälligen Listen probiean
         print('Trying', str(sorter))
         for i in range(10):
             rlist = random_list()
@@ -252,3 +255,5 @@ if __name__ == '__main__':
             print('ok')
 
         print()
+
+    # Is nadürlich volkommena Unfug, des so zu mochn. Oba wia müssns jo.
