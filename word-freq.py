@@ -2,8 +2,6 @@
 """
 Liest einen Text und bestimmt die Häufigkeiten der Wörter darin
 
-
-
 """
 
 import sys
@@ -31,8 +29,8 @@ def read_words_from(filename):
 
     # Remove rubbish
     for word in words: # Not optimal, but other ways are not much better.
-        # Discard puncuation marks
-        word = sub('[;:(),.*]', '', word)
+        # Discard everything that is not a 'word character'
+        word = sub("[^\w]", '', word)
 
         # Discard words that were or have become empty
         if word == '':
@@ -90,6 +88,20 @@ def tuplify(dictionary):
         tuplelist.append( (key, value) )
 
     return tuplelist
+
+
+def prettyprint_tuplelist(tuplelist):
+    """
+    Gibt eine Liste von (Schlüssel, Wert)-Tupeln als Tabelle aus
+
+    """
+
+    print(" {:<15s} | {:<10s} ".format("Wort", "Häufigkeit"))
+    print("-----------------+------------")
+
+    for (wort, haeufigk) in tuplelist:
+        print(" {:<15s} | {:>10d} ".format(wort, haeufigk))
+            # Longish words distort the table. However, they are seldom.
 
 
 # Die folgenden Sortierfunktionen sind Kopien der Funktionen bsort und
@@ -234,3 +246,13 @@ def merge_by_snd(array, lower_ind, middle_ind, upper_ind, buffer_ary):
     # Return _copy_ of buffer elements. -- Reference would cause trouble.
     return buffer_ary[:]
 
+
+# Run the whole read-freq-sort-print process if called as a program
+if __name__ == "__main__":
+    prettyprint_tuplelist(
+        sort_by_keys(
+            build_freq_table_from(
+                read_words_from(sys.argv[1])
+            )
+        )
+    )
