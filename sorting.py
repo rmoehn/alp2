@@ -66,8 +66,7 @@ def qsort(array, lower_ind=None, upper_ind=None):
 
     # On first call set proper parameters
     if upper_ind == lower_ind == None:
-        qsort(array, 0, len(array) - 1)
-        return array
+        return qsort(array, 0, len(array) - 1)
 
     # As long as partial list length is not 1
     if lower_ind < upper_ind:
@@ -78,7 +77,7 @@ def qsort(array, lower_ind=None, upper_ind=None):
         qsort(array, lower_ind,         old_pivot_ind - 1)
         qsort(array, old_pivot_ind + 1, upper_ind)
 
-    return
+    return array
 
 
 def partition_m(array, lower_ind, upper_ind):
@@ -121,8 +120,7 @@ def bsort(array, lower_ind=None, upper_ind=None):
 
     # If no bounds are given, sort the whole array
     if lower_ind == upper_ind == None:
-        bsort(array, 0, len(array) - 1)
-        return
+        return bsort(array, 0, len(array) - 1)
 
     # Loop as long as elements have been changed
     order_changed = True
@@ -145,6 +143,7 @@ def bsort(array, lower_ind=None, upper_ind=None):
     return array
 
 
+# Mergesort
 def fancy_mergesort(array, lower_ind=None, upper_ind=None, buffer_ary=[]):
     """
     Sortiert eine Liste mit dem Mergesort-Algorithmus
@@ -227,7 +226,7 @@ def merge(array, lower_ind, middle_ind, upper_ind, buffer_ary):
     # If all elements of the upper part of the list are used up...
     if middle_ind > upper_ind:
         # ...put the remaining elements of the lower part in the buffer.
-        buffer_ary[buffer_ind : buffer_ind + (upper_ind - lower_ind) + 1] \
+        buffer_ary[buffer_ind : buffer_ind + (old_middle_ind - lower_ind)] \
             = array[lower_ind : old_middle_ind]
 
     # If all elements of the lower part of the list are used up...
@@ -243,8 +242,13 @@ def merge(array, lower_ind, middle_ind, upper_ind, buffer_ary):
     return buffer_ary[:]
 
 
-testlist = [14, 33, 89, 87, 68, 56, 40, 26, 96, 73]
-
 if __name__ == '__main__':
-    bla = [-413, -61, 82, 170, 372, -225, 110, 253, 408, 455, 118, 569, 127, -213, 31, 159, 75, -34, 1]
-    print(fancy_mergesort(bla))
+    for sorter in [qsort, bsort, fancy_mergesort]:
+        print('Trying', str(sorter))
+        for i in range(10):
+            rlist = random_list()
+            slist = sorter(rlist)
+            assert is_sorted(slist)
+            print('ok')
+
+        print()
