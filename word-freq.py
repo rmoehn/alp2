@@ -43,3 +43,24 @@ def read_words_from(filename):
 
     return pure_words
 
+
+def build_freq_table_from(array):
+    """
+    Computes dictionary with the frequencies of the elements in an array
+
+    """
+
+    # Initialise array with frequencies
+    frequency_of = {}
+
+    # Walk through the elements of the array
+    for elem in array:
+        # Increment frequency of current element...
+        if elem in frequency_of:
+            frequency_of[elem] += 1
+        # ...or set to zero on first occurrence
+        else:
+            frequency_of[elem] =  1
+
+    return frequency_of
+
