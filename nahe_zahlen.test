@@ -1,0 +1,23 @@
+Tests für die Funktionen aus ``nahe_zahlen``
+==========================================================
+
+>>> from nahe_zahlen import *
+
+>>> find_smallest_diff_pair([])
+>>> find_smallest_diff_pair([3])
+>>> find_smallest_diff_pair([4.5, 9.8, 2.1, 20.2, 9.4])
+(9.4, 9.8)
+>>> find_smallest_diff_pair([30, -15, 56, 3, 75, 89])
+(75, 89)
+>>> find_smallest_diff_pair([30, -15, 56, 3, 75, 93.7])
+(-15, 3)
+>>> find_smallest_diff_pair([33, 1, 5, 32, 27, 3])
+(32, 33)
+>>> find_smallest_diff_pair([9, 4, 5, 9, 2, 7, 9])
+(4, 5)
+>>> find_smallest_diff_pair([24, -12, 13, 43, 9, 46, 3, 1])
+(1, 3)
+>>> find_smallest_diff_pair([-3, 43, 46, 1, 2])
+(1, 2)
+>>> find_smallest_diff_pair([-10324, 434, 934, -1003, 4, 54, -963, 3455])
+(-1003, -963)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3.2
 """
-From a list of numbers returns those two with the smallest difference
+From a list of numbers returns those two with the smallest difference (> 0)
 
 If there is more than one pair with the same smallest difference, the one with
 the smallest numbers is returned.
@@ -16,6 +16,10 @@ def find_smallest_diff_pair(numbers):
 
     """
 
+    # Can only find pairs in lists with more than one element
+    if len(numbers) < 2:
+        return None
+
     # Sort input list
     numbers = bsort(numbers)
         # To many exercises to use and analyse a more efficient algorithm
@@ -28,9 +32,10 @@ def find_smallest_diff_pair(numbers):
     for i in range(0, len(numbers) - 1):
         cur_difference = numbers[i+1] - numbers[i]
 
-        # Update least pair yet if smaller pair found
+        # Update least pair and difference yet if smaller pair found
         if 0 != cur_difference < least_difference_yet:
-            least_tuple_yet = (numbers[i], numbers[i+1])
+            least_tuple_yet      = (numbers[i], numbers[i+1])
+            least_difference_yet = cur_difference
 
     return least_tuple_yet
 
