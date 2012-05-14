@@ -174,9 +174,9 @@ def fancy_mergesort(array, lower_ind=None, upper_ind=None, buffer_ary=[]):
     # Sort smallish chunks with bubblesort
     if upper_ind - lower_ind < 8:
         print(lower_ind, upper_ind)
-        sorted = bsort(array, lower_ind, upper_ind)
-        print(sorted)
-        return sorted
+        psorted = bsort(array, lower_ind, upper_ind)
+        print(psorted)
+        return psorted
 
     # Sort halves of the current part separately/recursively
     middle_ind = lower_ind + (upper_ind - lower_ind) // 2
