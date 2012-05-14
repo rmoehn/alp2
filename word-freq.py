@@ -256,3 +256,9 @@ if __name__ == "__main__":
             )
         )
     )
+
+
+# Es ist vollkommen hirnrissig, sich zu verbiegen und eine Funktion für die
+# "schöne graphische Ausgabe" zu schreiben und noch dazu das verkorkste
+# Postscript-Modul zu benutzen, das keine ordentlichen Postscript-Dateien
+# erzeugt.
