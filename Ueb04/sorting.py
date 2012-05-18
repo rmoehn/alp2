@@ -131,6 +131,7 @@ def bsort(array, lower_ind=None, upper_ind=None):
         # Walk through unsorted part of the list
         for i in range(lower_ind, upper_ind):
             # Exchange elements that are not in order
+            print(i)
             if array[i] > array[i+1]:
                 array[i], array[i+1] = array[i+1], array[i]
 
@@ -165,12 +166,16 @@ def fancy_mergesort(array, lower_ind=None, upper_ind=None, buffer_ary=[]):
     if lower_ind == upper_ind == None:
         # Initialise buffer for merging
         buffer_ary = array[:]
+        print(len(array))
 
         return fancy_mergesort(array, 0, len(array) - 1, buffer_ary)
 
     # Sort smallish chunks with bubblesort
     if upper_ind - lower_ind < 8:
-        return bsort(array, lower_ind, upper_ind)
+        print(lower_ind, upper_ind)
+        psorted = bsort(array, lower_ind, upper_ind)
+        print(psorted)
+        return psorted
 
     # Sort halves of the current part separately/recursively
     middle_ind = lower_ind + (upper_ind - lower_ind) // 2
