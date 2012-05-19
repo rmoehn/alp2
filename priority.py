@@ -1,4 +1,7 @@
-class PriorityQueue:
+from heap import Heap
+import number
+
+class PriorityQueue(Heap):
     """
     Implementiert eine Prozesswarteschlange als binärer Min-Heap
 
@@ -10,38 +13,49 @@ class PriorityQueue:
 
     """
 
-    def __init__(self, process_list):
+    def is_empty(self):
         """
-        Initialise new PriorityQueue object with processes
-
-        Parameters:
-            process_list
-                ... List of tuples of the form (description, priority)
-                    representing processes. The priority is a number between 1
-                    and 100, where 1 means highest priority.
-        Returns:
-            PriorityQueue object
+        Check whether the priority queue is empty
 
         """
 
-        # Construct a heap from the given list of processes
-        self.queue = [len(process_list)] + process_list
-        self._heapify()
+        return len(self.heap) == 1
+
+
+    def push(self, job):
+        """
+        Add a job to the queueu
+
+        A job is a tuple (description, priority), where priority is a number
+        between 1 (highest) and 100 (lowest).
+
+        """
+
+        # Add the job to the queue
+        Heap.push(self, job)
 
         return
 
 
-    def _heapify(self, start_pos=1):
+    def _check(self, job):
         """
-        Reorder the process queue to establish heap structure
-
-        Parameters:
-            self
-                The object
-            start_pos
-                The array position where the reordering is started
+        Check whether input tuple is valid job
 
         """
 
+        priority = job[1]
+        if not (number.is_natural(priority) and 1 <= priority <= 100):
+            raise Exception("Priority must be natural number between 1 and "
+                            + " 100")
 
-    def _left
+        return
+
+
+    def _compare(self, pos1, pos2):
+        """
+        Compare priority parts of the tuples
+
+        """
+
+        return self._sub_compare(self.heap[pos1][1], self.heap[pos2][1])
+
