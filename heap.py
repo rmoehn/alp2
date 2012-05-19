@@ -19,6 +19,10 @@ class Heap:
 
         """
 
+        # Check whether all array elements are valid
+        for elem in array:
+            self._check(elem)
+
         # Set up and order internal array to form a heap
         self.heap = [len(array)] + array
         self._build_heap()
@@ -44,6 +48,9 @@ class Heap:
         Add an element to the heap
 
         """
+
+        # Check whether element is valid
+        self._check(elem)
 
         # Insert element into internal array
         self.heap.insert(1, elem)
@@ -74,6 +81,14 @@ class Heap:
         self._build_heap()
 
         return top_elem
+
+
+    def _check(self, elem):
+        """
+        Check function in base class does nothing
+
+        """
+        pass
 
 
     def _heapify_subtree(self, pos):
@@ -143,18 +158,33 @@ class Heap:
 
     def _compare(self, pos1, pos2):
         """
-        Compare-Funktion für einen Min-Heap mit einfachen Knoten
+        Call _sub_compare function with the right information
 
-        Return -1 if the element in pos1 is less than the element in pos2,
-        1 if it is greater, 0 if they are equal.
+        Comparison is a two-stage process: The positions of the elements to
+        compare are given to _compare. _compare extracts the the information
+        to actually compare and gives it to _sub_compare. _sub_compare
+        compares them and returns -1, 0 or 1.
 
-        To be overridden by most derived classes.
+        Thus the derived classes can easily compare certain parts of tuples in
+        the queue or construct max-heaps or other things.
 
         """
 
-        if   self.heap[pos1] < self.heap[pos2]:
+        return self._sub_compare(self.heap[pos1], self.heap[pos2])
+
+
+    def _sub_compare(self, elem1, elem2):
+        """
+        Compare-Funktion für einen Min-Heap mit einfachen Knoten
+
+        Return -1 if elem1 is less than the element in elem2,
+        1 if it is greater, 0 if they are equal.
+
+        """
+
+        if   elem1 < elem2:
             return -1
-        elif self.heap[pos1] > self.heap[pos2]:
+        elif elem1 > elem2:
             return 1
         else:
             return 0
