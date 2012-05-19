@@ -6,15 +6,39 @@ class Heap:
 
     def __init__(self, array):
         self.heap = [len(array)] + array
+        self._build_heap()
 
+        print(self.heap)
+        return
+
+    def _build_heap(self):
         for pos in range(self._size() // 2, 0, -1):
-            self._heapify(pos)
+            self._heapify_subtree(pos)
 
+        return
+
+    def push(self, elem):
+        self.heap.insert(1, elem)
+        self._inc_size
+        self._build_heap()
         print(self.heap)
 
         return
 
-    def _heapify(self, pos):
+    def pop(self):
+        if self._size() == 0:
+            return None
+
+        top_elem = self.heap[1]
+        del self.heap[1]
+
+        self._dec_size
+        self._build_heap()
+
+        return top_elem
+
+
+    def _heapify_subtree(self, pos):
         left_pos  = self._calc_lchild_pos(pos)
         right_pos = self._calc_rchild_pos(pos)
 
@@ -32,7 +56,7 @@ class Heap:
         if new_tnode_pos != pos:
             self.heap[pos], self.heap[new_tnode_pos] = \
                 self.heap[new_tnode_pos], self.heap[pos]
-            self._heapify(new_tnode_pos)
+            self._heapify_subtree(new_tnode_pos)
 
         return
 
@@ -47,6 +71,14 @@ class Heap:
 
     def _size(self):
         return self.heap[0]
+
+    def _inc_size(self):
+        self.heap[0] += 1
+        return
+
+    def _dec_size(self):
+        self.heap[0] -= 1
+        return
 
     def _compare(self, pos1, pos2):
         """
