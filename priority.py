@@ -63,7 +63,7 @@ class PriorityQueue(Heap):
 
 
 
-def gen_random_job ():
+def gen_random_job():
     """
     Creates a job with random description and priority
 
@@ -71,7 +71,7 @@ def gen_random_job ():
 
     return (randint(1000, 9999), randint(1, 100))
 
-def random_push (queue):
+def random_push(queue):
     """
     Add a random job to a queue and comment
 
@@ -85,7 +85,7 @@ def random_push (queue):
     return
 
 
-def random_pop (queue):
+def random_pop(queue):
     """
     Pop a job from a queue and comment
 
