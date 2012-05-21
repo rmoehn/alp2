@@ -1,0 +1,46 @@
+Tests für die Funktionen aus ``boolarray``
+==========================================================
+
+>>> from boolarray import *
+>>> ba = Boolarray([False, True, False, False, False])
+>>> ba.get(0)
+False
+>>> ba.get(4)
+False
+>>> ba.get(1)
+True
+
+Interessante Verhaltensweisen. -- Müsste alles behandelt werden:
+>>> ba.get(-1)
+False
+>>> ba.set(4, True)
+>>> ba.get(-1)
+False
+>>> ba.get(6)
+False
+>>> ba.get(-7)
+True
+>>> ba.get(4)
+True
+
+Etwas Schönes:
+>>> ba.get(4.54)
+Traceback (most recent call last):
+    ...
+TypeError: bytearray indices must be integers
+
+>>> ba.set(18, True)
+>>> ba.get(17)
+False
+>>> ba.get(18)
+True
+>>> ba.get(19)
+False
+
+>>> ba.len()
+24
+
+Should be renamed, really...
+
+>>> list(ba.intarray)
+[18, 0, 4]

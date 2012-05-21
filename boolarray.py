@@ -22,6 +22,7 @@ class Boolarray:
 
         # Initialise the array
         self.intarray = bytearray()
+            # Shouldn't be called intarray anymore. Remnants.
 
         # Transform given array into Boolarray
         for ind in range(len(tf_array)):
