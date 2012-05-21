@@ -1,0 +1,10 @@
+Tests für die Funktionen aus ``klaushaus``
+==========================================================
+
+>>> from klaushaus import gen_eq_suf_lists
+
+>>> gen_eq_suf_lists('Klaus baut ein Haus und klaut vom Nachbarn Strom.')
+[['und'], ['Strom'], ['vom'], ['ein'], ['Nachbarn'], ['Haus', 'Klaus'], ['baut', 'klaut']]
+
+>>> gen_eq_suf_lists('Heinrich Heine: Ein Sonett Sie küßten mich mit ihren falschen Lippen, Sie haben mir kredenzt den Saft der Reben Und haben mich dabei mit Gift vergeben -- Das taten mir die Magen und die Sippen.  Es schmilzt das Fleisch von meinen armen Rippen, Ich kann mich nicht vom Siechbett mehr erheben, Arglistig stahlen sie mein junges Leben -- Das taten mir die Magen und die Sippen.  Ich bin ein Christ -- wie es im Kirchenbuche Bescheinigt steht -- deshalb, bevor ich sterbe, Will ich euch fromm und brüderlich verzeihen.  Es wird mir sauer -- ach! mit meinem Fluche Möcht ich weit lieber euch vermaladeien: Daß euch der Herr verdamme und verderbe.  (Nicht grad sein bestes.)')
+[['deshalb'], ['grad'], ['Und'], ['und', 'und', 'und', 'und'], ['wird'], ['verderbe', 'sterbe'], ['Kirchenbuche', 'Fluche'], ['Sie', 'Sie'], ['die', 'die', 'die', 'die'], ['sie'], ['wie'], ['verdamme'], ['Heine'], ['Arglistig'], ['Ich', 'Ich'], ['ach'], ['ich', 'ich', 'ich', 'brüderlich', 'mich', 'mich', 'mich', 'Heinrich'], ['Fleisch'], ['euch', 'euch', 'euch'], ['dabei'], ['Will'], ['meinem'], ['im'], ['fromm'], ['vom'], ['haben', 'haben', 'Leben', 'Reben', 'vergeben', 'erheben'], ['den'], ['Magen', 'Magen'], ['falschen', 'verzeihen'], ['vermaladeien'], ['stahlen'], ['armen'], ['meinen'], ['Lippen', 'Rippen', 'Sippen', 'Sippen'], ['ihren'], ['taten', 'taten', 'küßten'], ['Ein'], ['bin'], ['ein', 'mein', 'sein'], ['kann'], ['von'], ['lieber'], ['der', 'der'], ['sauer'], ['mehr'], ['mir', 'mir', 'mir', 'mir'], ['bevor'], ['Herr'], ['Es', 'Es'], ['Das', 'Das'], ['das'], ['es'], ['junges'], ['bestes'], ['Saft'], ['Gift'], ['Bescheinigt'], ['Nicht', 'nicht', 'Möcht'], ['steht'], ['weit'], ['mit', 'mit', 'mit'], ['Christ'], ['Siechbett', 'Sonett'], ['schmilzt'], ['kredenzt'], ['Daß']]

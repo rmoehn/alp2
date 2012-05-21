@@ -1,0 +1,35 @@
+Tests für die Funktionen aus ``hanoi``
+==========================================================
+
+>>> from hanoi import count_hanoi_steps
+
+Sollte immer 2**n - 1 sein.
+
+>>> count_hanoi_steps(1)
+1
+>>> count_hanoi_steps(2)
+3
+>>> count_hanoi_steps(3)
+7
+>>> count_hanoi_steps(5)
+31
+>>> count_hanoi_steps(8)
+255
+>>> count_hanoi_steps(13)
+8191
+>>> count_hanoi_steps(21)
+2097151
+
+Noch ein paar interessante Sachen
+
+>>> count_hanoi_steps(0)
+1
+>>> count_hanoi_steps(-1)
+1
+>>> count_hanoi_steps(-5)
+1
+>>> count_hanoi_steps(5.21)
+Traceback (most recent call last):
+    ...
+TypeError: 'float' object cannot be interpreted as an integer
+
