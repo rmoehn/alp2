@@ -35,3 +35,47 @@ def gen_eq_suf_lists(string):
             cur_suffix = word[:3]
 
     return suffix_groups
+
+
+# Nein, es funktioniert nicht.
+def radix_sort_words(words):
+
+    cur_max_length = len(words[0])
+    for word in words:
+        if len(word) > cur_max_length:
+            cur_max_length = len(word)
+
+    for offs in range(cur_max_length - 1, -1, -1):
+        print(offs)
+        buckets = []
+
+        for word in words:
+            print('hallo')
+            try:
+                letterord = ord(word[offs])
+            except IndexError:
+                continue
+
+            print(letterord)
+            if letterord > len(buckets) - 1:
+                # buckets += [[]] * (letterord - len(buckets) + 1)
+                # Wer denkt sich diesen Scheiß aus? Eine Stunde um zu
+                # verstehen, warum sich plötzlich alle Elemente verändern,
+                # obwohl ich bloß auf eins zuweise!
+                print(buckets)
+
+
+            print(word)
+            buckets[letterord].append(word)
+            print(buckets)
+
+        words = []
+
+        for bucket in buckets:
+            words.extend(bucket)
+
+    return
+
+
+#if __name__ == '__main__':
+#    radix_sort_words(['abc', 'bac', 'acb', 'cba', 'cab', 'bca'])
