@@ -21,7 +21,7 @@ class Boolarray:
         """
 
         # Initialise the array
-        self.intarray = []
+        self.intarray = bytearray()
 
         # Transform given array into Boolarray
         for ind in range(len(tf_array)):
@@ -103,7 +103,7 @@ class Boolarray:
 
         """
 
-        self.intarray = self.intarray \
-                        + [0] * (real_ind - len(self.intarray) + 1)
+        self.intarray += bytearray([0] * (real_ind - len(self.intarray) + 1))
+            # Is it safe?
 
         return
