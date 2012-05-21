@@ -1,97 +1,61 @@
-class Boolarray:
+from boolarray import Boolarray
+
+# Copy & Paste ist sehr praktisch, wenn man zu viele Aufgaben hat. Das Auge
+# des aufmerksamen Betrachters wird allerdings feine Unterschiede zur Vorlage
+# bemerken.
+
+from math import sqrt
+
+def eratosthenes(grenze):
     """
-    Implementiert eine Liste von Wahrheitswerten als Array von Integern
+    Berechnet die Primzahlen im Bereich von 0 bis grenze.
 
-    Instead of an array of True/False (usually 8 bit each), this class creates
-    an array of 8 bit-integers (does Python use 8 bit-integers?), so that
-    every integer stores eigth Boolean values.
+    Zurückgegeben wird ein Boolarray, in dem die Werte an allen primen Indizes
+    False und an allen nicht-primen Indizes True sind.
 
     """
 
-    def __init__(self, tf_array=[]):
-        """
-        Initialise object of the Boolarray class (with some Boolean values)
+    # Nur arbeiten, wenn eine sinnvolle Obergrenze gewählt wurde
+    if grenze >= 2:
+        # 0 und 1 sind keine Primzahlen, der Rest erstmal schon
+        primzahlen = Boolarray([True, True])
 
-        This creates the array of integers emulating an array of Boolean
-        values. All indices not explicitly set are assumed to be False.
+        # Berechnen, wann wir Feierabend machen können
+        berechnungsgrenze = int(sqrt(grenze)) + 1
 
-        Parameter: tf_array is an array of True/False values the new instance
-        Boolarray is initialised with if given.
+        # Von 2 bis Feierabend alle ganzen Zahlen durchlaufen
+        for i in range(2, berechnungsgrenze):
+            # Wenn man eine Primzahl findet, alle Vielfache entprimen
+            if primzahlen.get(i) == False:
+                for j in range(2*i, grenze + 1, i):
+                    primzahlen.set(j, True)  # True == nicht prim!
 
-        """
+        return primzahlen
 
-        # Initialise the array
-        self.intarray = []
-
-        # Transform given array into Boolarray
-        for ind in range(len(tf_array)):
-            self.set(ind, tf_array[ind])
-
-        return
-
-
-    def set(self, ind, val):
-        """
-        Set value at the given index in the Boolarray to True or False
-
-        Parameters:
-            ind
-                Logical index of the truth value
-            val
-                True or False
-
-        """
-
-        # Calculate the physical position of the bit in the Boolarray
-        real_ind   = ind // 8
-        bitvec_ind = ind % 8
-
-        # Enlarge the array if necessary
-        self._expand(real_ind)
-
-        # Set the bit
-        if val == True:
-            self.intarray[real_ind] |= 2**bitvec_ind
-
-        elif val == False:
-            self.intarray[real_ind] &= ~2**bitvec_ind
-
-        else:
-            raise Exception("Only True or False are accepted as val!")
-
-        return
+    else:
+        return None
 
 
-    def get(self, ind):
-        """
-        Return the value at the given index in the Boolarray
+def extract_primes_from(boolarray, grenze):
+    """
+    Gibt die im von eratosthenes() im boolarray kodierten Primzahlen zurück
 
-        Parameters:
-            ind
-                Logical index of the truth value. If it has not been accessed
-                before, False is returned.
+    Da sich allein aus boolarray nicht feststellen lässt, bis zu welcher Zahl
+    auf Primität getestet wurde, muss die grenze des eratosthenes-Aufrufs mit
+    angegeben werden.
 
-        """
+    """
 
-        # Calculate the physical position of the bit in the Boolarray
-        real_ind   = ind // 8
-        bitvec_ind = ind % 8
+    # Walk through the array and find the prime indices (marked False)
+    primes = []
+    for ind in range(2, grenze + 1):
+        if boolarray.get(ind) == False:
+            primes.append(ind)
 
-        # Return False if array does not reach unto real_ind
-        if real_ind >= len(self.intarray):
-            return False
-
-        return 0 != self.intarray[real_ind] & 2**bitvec_ind
-            # Returns a Boolean value
+    return primes
 
 
-    def _expand(self, real_ind):
-        """
-        Expand integer array to the given index (fill in zeroes)
+def calc_primes_through(grenze):
+    """ kleine Convenience-Funktion """
 
-        """
-
-        self.intarray = self.intarray \
-                        + [0] * (real_ind - len(self.intarray) + 1)
-
-        return
+    return extract_primes_from(eratosthenes(grenze), grenze)
