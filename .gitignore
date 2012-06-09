@@ -5,3 +5,4 @@ __pycache__
 listings.tex
 rgb-2-cmyk.py
 *.tar.gz
+*.class
