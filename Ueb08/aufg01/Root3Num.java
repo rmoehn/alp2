@@ -71,6 +71,23 @@ public class Root3Num {
     }
 
 
+    /*
+     * add, times, sub and mult in class method disguise
+     */
+    public static Root3Num add(Root3Num num1, Root3Num num2) {
+        return num1.add(num2);
+    }
+    public static Root3Num sub(Root3Num num1, Root3Num num2) {
+        return num1.sub(num2);
+    }
+    public static Root3Num mult(Root3Num num1, Root3Num num2) {
+        return num1.mult(num2);
+    }
+    public static Root3Num times(int factor, Root3Num num1) {
+        return num1.times(factor);
+    }
+
+
     /**
      * Return the number's real value as double.
      *
