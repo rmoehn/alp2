@@ -66,6 +66,22 @@ public class Root3NumTest {
         assertTrue(!num1.equals(new Object()));
     }
 
+    // Test gt() method
+    @Test public void test_gt() {
+        assertTrue(  num1.gt(num2)     );
+        assertTrue( !num2.gt(num1)     );
+        assertTrue(  num2.gt(num_zero) );
+        assertTrue( !num2.gt(num2)     );
+    }
+
+    // Test lt() method
+    @Test public void test_lt() {
+        assertTrue(  num2.lt(num1)     );
+        assertTrue( !num1.lt(num2)     );
+        assertTrue(  num2.times(-1).lt(num_zero) );
+        assertTrue( !num2.lt(num2)     );
+    }
+
     // Test hashCode() method
     @Test public void test_hashcode() {
         assertEquals(num1.hashCode(), num1.hashCode());

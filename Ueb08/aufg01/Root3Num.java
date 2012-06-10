@@ -101,6 +101,28 @@ public class Root3Num {
 
 
     /**
+     * Test whether the numeric value of this Root3Num is less than another's.
+     *
+     * @param that  Root3Num to be compared with this
+     * @return      true if this is less than that
+     */
+    public boolean lt(Root3Num that) {
+        return this.value() < that.value();
+    }
+
+
+    /**
+     * Test whether numeric value of this Root3Num is greater than another's.
+     *
+     * @param that  Root3Num to be compared with this
+     * @return      true if this is greater than that
+     */
+    public boolean gt(Root3Num that) {
+        return this.value() > that.value();
+    }
+
+
+    /**
      * Override the generic <code>hashCode</code> method.   The hash code for
      * the two ints representing the Root3Num is calculated according to the
      * guidelines in @see.
