@@ -58,6 +58,20 @@ public class Root3Num {
 
 
     /**
+     * Multiply a Root3Num with this.
+     *
+     * @param that   a Root3Num to be multiplied with this
+     * @return  a new Root3Num being the product of this and that
+     */
+    public Root3Num mult(Root3Num that) {
+        return new Root3Num(
+                       this.a * that.a + 3 * this.b * that.b,
+                       this.a * that.b +     this.b * that.a
+                   );
+    }
+
+
+    /**
      * Return the number's real value as double.
      *
      * @return  a double holding the number's calculated value
@@ -96,5 +110,14 @@ public class Root3Num {
      */
     public int hashCode() {
         return (this.a * 33) ^ this.b;
+    }
+
+    /**
+     * Override the generic toString method.
+     *
+     * @return a stringified tuple representing this Root3Num
+     */
+    public String toString() {
+        return "(" + this.a + ", " + this.b + ")";
     }
 }
