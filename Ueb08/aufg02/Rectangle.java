@@ -73,8 +73,19 @@ public class Rectangle {
         return this.width * this.height;
     }
 
-    public boolean overlaps( Rectangle r ) {
-        return true;
+    /**
+     * Test whether a <code>Rectangle</code> overlaps with this one.
+     *
+     * @param that   a <code>Rectangle</code> tested whether it overlaps with
+     *               this
+     * @return  <code>true</code> if they overlap
+     *          <code>false</code> otherwise
+     */
+    public boolean overlaps(Rectangle that) {
+        return this.x               < that.x + that.width
+            && this.y               < that.y + that.height
+            && this.x + this.width  > that.x
+            && this.y + this.height > that.y;
     }
 
     /**
