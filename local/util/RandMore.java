@@ -1,4 +1,4 @@
-package shapes;
+package local.util;
 
 import java.util.Random;
 
