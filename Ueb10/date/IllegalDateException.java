@@ -1,3 +1,8 @@
+package date;
+
+/**
+ * Provides an IllegalDateException object.
+ */
 public class IllegalDateException extends Exception {
     /**
      * Message explaining details of the Exception.
