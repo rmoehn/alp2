@@ -19,7 +19,7 @@ public class Datum {
      * @throws IllegalDateException If an invalid date was given
      */
     public Datum(int year, int month, int day) throws IllegalDateException {
-        // Die on ominous month
+        // Die on weird month
         if (month < 1 || month > 12) {
             throw new IllegalDateException(
                           "Invalid month number.",
@@ -27,7 +27,7 @@ public class Datum {
                       );
         }
 
-        // Die on ominous day
+        // Die on weird day
         if (day < 1 || day > days_in_month(month, year)) {
             throw new IllegalDateException(
                           "Invalid day of month.",
