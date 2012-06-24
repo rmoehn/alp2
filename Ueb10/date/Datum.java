@@ -140,6 +140,62 @@ public class Datum {
     }
 
     /**
+     * Compares this <code>Datum</code>  with the specified <code>Datum</code>
+     * for order. Returns -1, 0, or a 1 as this <code>Datum</code> is less
+     * than, equal to, or greater than the specified <code>Datum</code> . This
+     * is this class' implementation of the {@link Comparable} interface.
+     *
+     * @param that the Datum to be compared with this
+     * @return -1, 0 or 1 as this Datum is less than, equal to, or greater
+     *         than the specified Datum
+     * @see Comparable
+     */
+    public int compareTo(Datum that) {
+        if (this.year  < that.year) {
+            return -1;
+        }
+        if (this.year  > that.year) {
+            return  1;
+        }
+        if (this.month < that.month) {
+            return -1;
+        }
+        if (this.month > that.month) {
+            return  1;
+        }
+        if (this.day   < that.day) {
+            return -1;
+        }
+        if (this.day   > that.day) {
+            return  1;
+        }
+
+        return 0; // Equality left.
+    }
+
+    /**
+     * Checks whether this <code>Datum</code> is after a given Datum.
+     *
+     * @param that the Datum to be checked
+     * @return <code>true</code> if this Datum is after that
+     *         <code>false</code> otherwise
+     */
+    public boolean after(Datum that) {
+        return this.compareTo(that) == 1;
+    }
+
+    /**
+     * Checks whether this <code>Datum</code> is before a given Datum.
+     *
+     * @param that the Datum to be checked
+     * @return <code>true</code> if this Datum is before that
+     *         <code>false</code> otherwise
+     */
+    public boolean before(Datum that) {
+        return this.compareTo(that) == -1;
+    }
+
+    /**
      * Returns this <code>Datum</code>'s date as a String, probably in accord
      * with ISO.
      *

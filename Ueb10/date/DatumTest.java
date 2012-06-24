@@ -158,6 +158,30 @@ public class DatumTest {
         assertEquals(new Datum(-9, 1, 23).toString(), "-9-01-23");
     }
 
+    // Test method compareTo()
+    @Test public void test_compareTo() throws IllegalDateException {
+        assertEquals(new Datum(1962, 6, 6).compareTo(
+                     new Datum(2010, 6, 3)), -1);
+        assertEquals(new Datum(1926, 5, 27).compareTo(
+                     new Datum(1926, 5, 27)), 0);
+        assertEquals(new Datum(1819, 1, 1).compareTo(
+                     new Datum(1818, 12, 27)), 1);
+    }
+
+    // Test method before()
+    @Test public void test_before() throws IllegalDateException {
+        assertTrue(new Datum(1986, 11, 13).before(new Datum(1989, 8, 3)));
+        assertTrue(! new Datum(1912, 3, 29).before(new Datum(1912, 3, 28)));
+        assertTrue(! dat1.before(dat1));
+    }
+
+    // Test method after()
+    @Test public void test_after() throws IllegalDateException {
+        assertTrue(new Datum(1932, 6, 1).after(new Datum(1930, 3, 29)));
+        assertTrue(! new Datum(1709, 3, 10).after(new Datum(1709, 3, 11)));
+        assertTrue(! dat1.after(dat1));
+    }
+
     // Test equals() method
     @Test public void test_equals() throws IllegalDateException {
         assertEquals(dat1, dat1);
