@@ -1,3 +1,4 @@
+package aufg01;
 /**
  * Rather silly class for "testing" the rather silly Root3Num class.
  * Wie Sie vielleicht sehen, wird das Produkt der beiden Matrizen auf

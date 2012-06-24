@@ -1,3 +1,4 @@
+package aufg01;
 import org.junit.*;
 import static org.junit.Assert.*;
 

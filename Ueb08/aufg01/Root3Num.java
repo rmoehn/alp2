@@ -1,3 +1,4 @@
+package aufg01;
 import java.lang.Math;
 
 /**

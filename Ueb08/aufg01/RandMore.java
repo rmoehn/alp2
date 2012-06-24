@@ -1,3 +1,4 @@
+package aufg01;
 import java.util.Random;
 
 public class RandMore extends Random {
