@@ -72,6 +72,31 @@ public class DatumTest {
         Datum bla = new Datum(1958, 5, 35);
     }
 
+    // Test method setDate()
+    @Test public void test_setDate() throws IllegalDateException {
+        Datum datum = new Datum(1712, 6, 28);
+        datum.setDate(30, 5, 1832);
+        assertEquals(datum, new Datum(1832, 5, 30));
+    }
+
+    @Test(expected=IllegalDateException.class)
+    public void test_setDate_exc() throws IllegalDateException {
+        Datum datum = new Datum(1712, 6, 28);
+        datum.setDate(31, 4, 1640);
+    }
+
+    // Test method setDatum()
+    @Test public void test_setDatum() throws IllegalDateException {
+        Datum datum = new Datum(1712, 6, 28);
+        datum.setDatum(1848, 3, 30);
+        assertEquals(datum, new Datum(1848, 3, 30));
+    }
+
+    @Test(expected=IllegalDateException.class)
+    public void test_setDatum_exc() throws IllegalDateException {
+        Datum datum = new Datum(1712, 6, 28);
+        datum.setDatum(31, 9, 1688);
+    }
 
     // Tests for method nextDay()
     @Test public void test_nextDay() throws IllegalDateException {

@@ -19,6 +19,21 @@ public class Datum {
      * @throws IllegalDateException If an invalid date was given
      */
     public Datum(int year, int month, int day) throws IllegalDateException {
+        this.setDatum(year, month, day);
+    }
+
+    /**
+     * Sets the parameters of a <code>Datum</code> object.   Year, month and
+     * day have to be given in ISO order.
+     *
+     * @param year  the year of the date (negative numbers for years BCE)
+     * @param month the month of the date
+     * @param day   the day of the date
+     *
+     * @throws IllegalDateException If an invalid date was given
+     */
+    public void setDatum(int year, int month, int day)
+           throws IllegalDateException {
         // Die on weird month
         if (month < 1 || month > 12) {
             throw new IllegalDateException(
@@ -39,6 +54,21 @@ public class Datum {
         this.year  = year;
         this.month = month;
         this.day   = day;
+    }
+
+    /**
+     * Sets the parameters of a <code>Datum</code> object.   Year, month and
+     * day have to be given in day-month-year-order.
+     *
+     * @param day   the day of the date
+     * @param month the month of the date
+     * @param year  the year of the date (negative numbers for years BCE)
+     *
+     * @throws IllegalDateException If an invalid date was given
+     */
+    public void setDate(int day, int month, int year)
+           throws IllegalDateException {
+        this.setDatum(year, month, day);
     }
 
     /**
