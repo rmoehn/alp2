@@ -5,7 +5,7 @@ import java.util.Formatter;
 /**
  * Provides an object for simple date operations.
  */
-public class Datum {
+public class Datum implements Date, Comparable {
     private int year;
     private int month;
     private int day;
@@ -76,9 +76,21 @@ public class Datum {
     /**
      * Changes this <code>Datum</code> to the day after it.
      */
-    public void nextDay() throws IllegalDateException {
+    public void nextDay() {
+        int days_in_cur_month;
+
+        try {
+            days_in_cur_month = days_in_month(this.month, this.year);
+        }
+        catch (IllegalDateException e) {
+            throw new RuntimeException(
+                          "There has been a mistake in programming."
+                          + " Thank you for buying our products."
+                      );
+        }
+
         // Current day is last day of month...
-        if (this.day == days_in_month(this.month, this.year)) {
+        if (this.day == days_in_cur_month) {
             // ...and last day of year: Set to start of following year.
             if (this.month == 12) {
                 ++this.year;
@@ -171,8 +183,20 @@ public class Datum {
      *
      * @return a Datum being the copy of this
      */
-    public Datum getDate() throws IllegalDateException {
-        return new Datum(this.year, this.month, this.day);
+    public Datum getDate() {
+        Datum copied_datum;
+
+        try {
+            copied_datum = new Datum(this.year, this.month, this.day);
+        }
+        catch (IllegalDateException e) {
+            throw new RuntimeException(
+                          "There has been a mistake in programming."
+                          + " Thank you for your confidence."
+                      );
+        }
+
+        return copied_datum;
     }
 
     /**
@@ -186,7 +210,10 @@ public class Datum {
      *         than the specified Datum
      * @see Comparable
      */
-    public int compareTo(Datum that) {
+    public int compareTo(Object o) {
+        // Transform give object into Datum, if possible
+        Datum that = (Datum) o;
+
         if (this.year  < that.year) {
             return -1;
         }
@@ -216,8 +243,8 @@ public class Datum {
      * @return <code>true</code> if this Datum is after that
      *         <code>false</code> otherwise
      */
-    public boolean after(Datum that) {
-        return this.compareTo(that) == 1;
+    public boolean after(Date that) {
+        return this.compareTo((Datum) that) == 1;
     }
 
     /**
@@ -227,8 +254,8 @@ public class Datum {
      * @return <code>true</code> if this Datum is before that
      *         <code>false</code> otherwise
      */
-    public boolean before(Datum that) {
-        return this.compareTo(that) == -1;
+    public boolean before(Date that) {
+        return this.compareTo((Datum) that) == -1;
     }
 
     /**

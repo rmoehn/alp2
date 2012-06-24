@@ -1,6 +1,6 @@
 DatumTest.class: DatumTest.java Datum.class IllegalDateException.class
 
-Datum.class: Datum.java IllegalDateException.class
+Datum.class: Datum.java IllegalDateException.class Date.class Comparable.class
 
 Date.class: Date.java
 

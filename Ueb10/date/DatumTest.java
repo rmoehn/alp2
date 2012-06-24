@@ -114,7 +114,7 @@ public class DatumTest {
     }
 
     // Test method getDate()
-    @Test public void test_getDate() throws IllegalDateException {
+    @Test public void test_getDate() {
         Datum cloned_dat1 = dat1.getDate();
         assertTrue(cloned_dat1 != dat1);
         assertEquals(cloned_dat1, dat1);
