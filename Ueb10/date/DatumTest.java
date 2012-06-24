@@ -152,6 +152,12 @@ public class DatumTest {
         assertEquals(datum, new Datum(2012, 3, 1));
     }
 
+    // Test method toString()
+    @Test public void test_toString() throws IllegalDateException {
+        assertEquals(new Datum(1821, 5, 3).toString(), "1821-05-03");
+        assertEquals(new Datum(-9, 1, 23).toString(), "-9-01-23");
+    }
+
     // Test equals() method
     @Test public void test_equals() throws IllegalDateException {
         assertEquals(dat1, dat1);

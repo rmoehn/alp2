@@ -1,5 +1,7 @@
 package date;
 
+import java.util.Formatter;
+
 /**
  * Provides an object for simple date operations.
  */
@@ -135,6 +137,16 @@ public class Datum {
                               year, month, 0
                           );
         }
+    }
+
+    /**
+     * Returns this <code>Datum</code>'s date as a String, probably in accord
+     * with ISO.
+     *
+     * @return a String representing this Datum
+     */
+    public String toString() {
+        return String.format("%d-%02d-%02d", this.year, this.month, this.day);
     }
 
     /**
