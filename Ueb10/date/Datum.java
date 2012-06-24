@@ -140,6 +140,42 @@ public class Datum {
     }
 
     /**
+     * Returns the year of this <code>Datum</code>.
+     *
+     * @return the year of this Datum
+     */
+    public int getYear() {
+        return this.year;
+    }
+
+    /**
+     * Returns the month of this <code>Datum</code>.
+     *
+     * @return the month of this Datum
+     */
+    public int getMonth() {
+        return this.month;
+    }
+
+    /**
+     * Returns the day of this <code>Datum</code>.
+     *
+     * @return the day of this Datum
+     */
+    public int getDay() {
+        return this.day;
+    }
+
+    /**
+     * Returns a copy of this <code>Datum</code>.
+     *
+     * @return a Datum being the copy of this
+     */
+    public Datum getDate() throws IllegalDateException {
+        return new Datum(this.year, this.month, this.day);
+    }
+
+    /**
      * Compares this <code>Datum</code>  with the specified <code>Datum</code>
      * for order. Returns -1, 0, or a 1 as this <code>Datum</code> is less
      * than, equal to, or greater than the specified <code>Datum</code> . This

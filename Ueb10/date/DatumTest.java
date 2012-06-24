@@ -98,6 +98,28 @@ public class DatumTest {
         datum.setDatum(31, 9, 1688);
     }
 
+    // Test method getYear()
+    @Test public void test_getYear() {
+        assertEquals(dat1.getYear(), 1968);
+    }
+
+    // Test method getDay()
+    @Test public void test_getDay() {
+        assertEquals(dat1.getDay(), 10);
+    }
+
+    // Test method getMonth()
+    @Test public void test_getMonth() {
+        assertEquals(dat1.getMonth(), 7);
+    }
+
+    // Test method getDate()
+    @Test public void test_getDate() throws IllegalDateException {
+        Datum cloned_dat1 = dat1.getDate();
+        assertTrue(cloned_dat1 != dat1);
+        assertEquals(cloned_dat1, dat1);
+    }
+
     // Tests for method nextDay()
     @Test public void test_nextDay() throws IllegalDateException {
         Datum datum;
