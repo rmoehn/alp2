@@ -1,9 +1,9 @@
 package queue;
 
 /**
- * Implements a simple queue.   The underlying data structure is an array. If
- * it is full, all elements are copied into a larger array. So think whether
- * this approach suits you best.
+ * Implements a simple queue.   The underlying data structure is an array.
+ * When it is full, all elements are copied into a larger array. So think
+ * whether this approach suits you best.
  */
 public class SimpleQueue<ElemType> implements Queue<ElemType> {
     /*
@@ -25,6 +25,8 @@ public class SimpleQueue<ElemType> implements Queue<ElemType> {
      */
     public SimpleQueue() {
         queue_array = (ElemType[]) new Object[20];
+            // Zu faul für weiteren Konstruktor mit wählbarer Größe.
+            // Aber wie macht man das richtig und sicher?
     }
 
     /**

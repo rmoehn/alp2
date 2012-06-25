@@ -1,5 +1,5 @@
 SimpleQueueTest.class: SimpleQueueTest.java SimpleQueue.java EmptyQueueException.java Queue.java
-	javac $(CP) SimpleQueueTest.java SimpleQueue.java EmptyQueueException.java Queue.java
+	javac -Xlint:unchecked $(CP) SimpleQueueTest.java SimpleQueue.java EmptyQueueException.java Queue.java
 
 .PHONY: test
 test: SimpleQueueTest.class

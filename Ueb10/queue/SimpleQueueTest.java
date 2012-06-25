@@ -85,6 +85,7 @@ public class SimpleQueueTest {
         }
 
         // Same procedure but probably somewhere in the middle of the array
+        // Or not?
         for (int i = 0; i < testnums_cnt; ++i) {
             queue.enqueue(testnums[i]);
             assertTrue(!queue.empty());
